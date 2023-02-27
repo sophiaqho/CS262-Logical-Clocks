@@ -84,7 +84,6 @@ class ClientSocket:
     # Update the password in the client side
     self.password = pwd_client
     
-
     # Inform the server of the password
     self.client.sendto((pwd_client).encode(), (host, port))
 
