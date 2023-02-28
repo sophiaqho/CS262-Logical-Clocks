@@ -124,13 +124,16 @@ class Server:
         # lock mutex
         self.account_list_lock.acquire()
     
-        # get available messages
-        msg = self.account_list.get(client_username).getFirstMessage()
+        # get the first available message and the length of the remaining queue
+        logical_clock_time, length = self.account_list.get(client_username).getFirstMessage()
+        # parse the first message containing the logical clock time with the length of the queue
+        # so we can send it to the client and the client can log it
+        msg = logical_clock_time + '_' + length
 
         # unlock mutex
         self.account_list_lock.release()
 
-        # then, send over the final message
+        # send over the message with the logical clock time and the messages queue length
         conn.sendto(msg.encode(), (host, port))
 
         return msg

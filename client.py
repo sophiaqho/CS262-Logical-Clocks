@@ -17,7 +17,6 @@ class ClientSocket:
         # send/receive messages), their username, and 
         # queue of messages that they have received.
 
-        self.logged_in = False
         self.username = ''
         self.messages = []
         self.logical_clock_time = 0
@@ -56,8 +55,8 @@ class ClientSocket:
     # returns the first message in the message queue and removes it from the queue
     def getFirstMessage(self):
         if self.messages:
-            return self.messages.pop(0)
-        return "No messages available."
+            return self.messages.pop(0), len(self.messages)
+        return "No messages available", 0
     
     def addMessage(self, message_string):
         self.messages.append(message_string)
@@ -77,7 +76,6 @@ class ClientSocket:
 
         # Update ClientSocket object username and log in fields
         self.username = str(data)
-        self.logged_in = True
         self.other_machines.remove(self.username)
 
         # create a logger file name and use that name to create the log file for this user
@@ -95,23 +93,28 @@ class ClientSocket:
         return self.getUsername()
 
     # helper function to parse messages as everything is sent as strings
-    # return is of the format (sender username, message)
+    # return is of the format (sender username, logical clock time, 
+    # length of remaining messages in queue)
     def parse_live_message(self, message):
-        # message format is sender username +message
+        # message format is sender username + message + _ + number of remaining messages in queue
         # username is 1 characters total (fixed length)
-        return (message[:1], message[1:])
+        parsed_message = message.split("_")
+        # return the sender username, logical clock timestamp, number of remaining messages
+        return (parsed_message[0][0], parsed_message[0][1:], parsed_message[1])
 
 
     # function to print all available messages
     # returns the # of messages delivered
-    def deliver_available_msgs(self, available_msgs):
-        # want to receive all undelivered messages
-        for received_msg in available_msgs:
-        # get Messages() has 
-            sender_username, msg = self.parse_live_message(received_msg)
-            print("Message from " + sender_username + ": " + msg)
+    def deliver_first_msg(self, received_msg):
+        # We want to parse the recieved message to get the logical time clock
+        # and the length of the remaining message queue
+        sender_username, msg, length = self.parse_live_message(received_msg)
+        # print the logical clock timestamp message from the sender machine
+        print("Logical clock timestamp from machine #" + sender_username + ": " + msg)
+        # print the number of messages left in the queue
+        print("Number of unread messages: " + str(length))
         
-        return len(available_msgs)
+        return length
 
     
     # function used to send a message to another user!/yourself!
@@ -135,18 +138,8 @@ class ClientSocket:
         # inform server that you want to get new messages
         self.client.sendto('msgspls!'.encode(), (host, port))
 
-        # server will send back the length of messages
-        len_msgs = self.client.recv(1024).decode()
-
-        # TODO- see if we still want to do the length of stuff- currentyl matches 
-        # server side
-        # or do we want to recieve one message at a time?! to reduce this flow
-        # send message to control info flow (ensure you are ready to decode msg)
-        message = 'ok'
-        self.client.sendto(message.encode(), (host, port))
-
         # server will send back messages of proper length
-        data = self.client.recv(int(len_msgs)).decode()
+        data = self.client.recv(128).decode()
 
         return data
 
@@ -180,65 +173,66 @@ class ClientSocket:
         # handle initial information flow- either will login or create a new account
         # You need to either log in or create an account first
 
-        while not self.logged_in:
-            # create a username
-            self.create_client_username(host, port)
+        self.create_client_username(host, port)
             
         # can only enter loop if you are logged in
-        if self.logged_in:
+        while True:
+            
+            # get the first available message that has been sent to this machine
+            received_msg = self.receive_messages(host, port)
 
-            action = random.randint(1, 10)
+            if received_msg != 'No messages available':
+                # deliver the first available message if there is one
+                self.deliver_first_msg(received_msg)
 
-            if action == 1 or action == 2:
-                recipient_username = self.other_machines[action - 1]
-                self.send_clock_message(host, port, self.clock_time, recipient_username)
+                # update the local logical clock for this machine
+                self.update_local_logical_clock()
+
+                # log the deliver message event in the log file
                 self.log_event('SEND', recipient_username)
 
-            elif action == 3:
-                recipient_one_username = self.other_machines[0]
-                recipient_two_username = self.other_machines[1]
-                
-                self.send_clock_message(host, port, self.clock_time, recipient_one_username)
-                self.log_event('SEND', recipient_one_username)
+            else:
+                # randomly generate a number between 1 and 10 to be our machine's action
+                action = random.randint(1, 10)
 
-                self.send_clock_message(host, port, self.clock_time, recipient_two_username)
-                self.log_event('SEND', recipient_two_username)
-                
-            else: 
-                self.update_local_logical_clock()
-                self.log_event('INTERNAL')
+                # if the action is 1 or 2, send the logical clock message to one of the other machines
+                if action == 1 or action == 2:
+                    recipient_username = self.other_machines[action - 1]
+                    self.send_clock_message(host, port, self.clock_time, recipient_username)
 
-            message = input("""
-            To send a message, enter the recipient username, 
-            'listaccts' to list all active usernames, 
-            'exit' to leave program, or 
-            'delete' to delete your account: 
-            """)
-            # TODO- this!
-            # generate a number to decide an action and then call upon that function for the acton
+                    # update the local logical clock for this machine
+                    self.update_local_logical_clock()
 
-                # send message otherwise
-                else:
-                    server_message = self.send_message(message, host, port)
+                    # log the event in the log file
+                    self.log_event('SEND', recipient_username)
+
+                # if the action is 3, send the logical clock message to both of the other machines
+                elif action == 3:
+                    recipient_one_username = self.other_machines[0]
+                    recipient_two_username = self.other_machines[1]
                     
-                    # print output of the server- either that it was successfully sent or that the user was not found.
-                    print('Message from server: ' + server_message)
+                    self.send_clock_message(host, port, self.clock_time, recipient_one_username)
 
-                # # get all messages that have been delivered to this client
-                received_msgs = self.receive_messages(host, port)
+                    # update the local logical clock for this machine
+                    self.update_local_logical_clock()
 
-                if received_msgs != 'No messages available':
-                    # deliver available messages if there are any
-                    available_msgs = received_msgs.split('we_hate_cs262')[1:]
-                    self.deliver_available_msgs(available_msgs)
+                    # log the event in the log file
+                    self.log_event('SEND', recipient_one_username)
 
-                # re query for new client actions
-                message = input("""
-                To send a message, enter the recipient username, 
-                'listaccts' to list all active usernames, 
-                'exit' to leave program, or 
-                'delete' to delete your account: 
-                """)
+                    self.send_clock_message(host, port, self.clock_time, recipient_two_username)
+
+                    # update the local logical clock for this machine
+                    self.update_local_logical_clock()
+
+                    # log the event in the log file
+                    self.log_event('SEND', recipient_two_username)
+                    
+                else: 
+                    # update the local logical clock for this machine
+                    self.update_local_logical_clock()
+
+                    # log the event in the log file
+                    self.log_event('INTERNAL')
 
             # # will only exit while loops on 'exit' or 'delete'
             # # read undelivered messages for exit
