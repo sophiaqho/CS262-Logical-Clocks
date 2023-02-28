@@ -19,14 +19,13 @@ class ClientSocket:
 
         self.username = ''
         self.messages = []
-        self.logical_clock_time = 0
+        self.logical_clock_time = [0] * 3
         self.other_machines = ['1', '2', '3']
         self.logname = "Process"
         self.log = None
 
         self.time_breakdown = random.randint(1, 6)
-
-
+        
         if client is None:
             self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
@@ -65,7 +64,7 @@ class ClientSocket:
     # Function to create a new account
     # returns the client username
     # TODO- add the time stamp
-    def create_client_username(self, host, port, pwd_client = None):
+    def create_client_username(self, host, port):
         # message contains 'create'- send this to the server
         # so the server runs the create function
 
@@ -79,7 +78,7 @@ class ClientSocket:
         self.other_machines.remove(self.username)
 
         # create a logger file name and use that name to create the log file for this user
-        self.logname = "Process" + self.username + "_" + str(datetime.now()) + ".csv"
+        self.logname = "Process" + self.username + "_" + str(datetime.now()) + ".txt"
         logging.basicConfig(
             filename=self.logname,
             format='%(asctime)s,%(msecs)03d, %(message)s',
@@ -96,11 +95,22 @@ class ClientSocket:
     # return is of the format (sender username, logical clock time, 
     # length of remaining messages in queue)
     def parse_live_message(self, message):
-        # message format is sender username + message + _ + number of remaining messages in queue
+        # message format is `SenderUsername/time1/time2/time3_length`
         # username is 1 characters total (fixed length)
         parsed_message = message.split("_")
+        
+        # get the string of the new logical clock received from the server
+        # the format of this variable will be `time1/time2/time3`
+        received_logical_clock = parsed_message[0][2:]
+
+        # parse the string of the received logical clock to be split by "/"
+        logical_clock_vector = received_logical_clock.split("/")
+
+        # convert each string in the array to an int of the logical clock time
+        logical_clock_vector = [int(x) for x in logical_clock_vector]
+
         # return the sender username, logical clock timestamp, number of remaining messages
-        return (parsed_message[0][0], parsed_message[0][1:], parsed_message[1])
+        return (parsed_message[0][0], logical_clock_vector, parsed_message[1])
 
 
     # function to print all available messages
@@ -108,28 +118,34 @@ class ClientSocket:
     def deliver_first_msg(self, received_msg):
         # We want to parse the recieved message to get the logical time clock
         # and the length of the remaining message queue
-        sender_username, msg, length = self.parse_live_message(received_msg)
+        sender_username, logical_clock_vector, length = self.parse_live_message(received_msg)
         # print the logical clock timestamp message from the sender machine
         print("Logical clock timestamp from machine #" + sender_username + ": " + msg)
         # print the number of messages left in the queue
         print("Number of unread messages: " + str(length))
         
-        return length
+        return logical_clock_vector, length
 
     
     # function used to send a message to another user!/yourself!
     # returns True if message was delivered
     # False otherwise
-        # sends to one of the other machine or two machines a message that is the local logical clock time
-    def send_clock_message(self, host, port, msg_content, recipient_username):
-        # modified on server side to have
-        self.client.sendto(('sendmsg' + self.getUsername() + recipient_username + str(self.logical_clock_time)).encode(), (host, port))
+    # sends to one of the other machine or two machines a message that is the local logical clock time
+    def send_clock_message(self, host, port, recipient_username):
+        # format the logical clock vector into a string where each machines logical clock is separated by a `/`.
+        logical_clock_string = '/' + str(self.logical_clock_time[0]) + '/' + str(self.logical_clock_time[1]) + '/' + str(self.logical_clock_time[2])
+        
+        # send the formatted vector clock as a string to the server along with the sender machine and the recipient machine
+        self.client.sendto(('sendmsg' + self.getUsername() + recipient_username + logical_clock_string).encode(), (host, port))
+        
         # receive confirmation from the server that it was delivered or error message elsewhere
         data = self.client.recv(1024).decode()
-        # print to see whether the 
-        # TODO delete this later on
+
+        # print to see whether it was sent successfully
         print(data)
-        return not data == "Message could not be delivered. Please try again."
+
+        # return True if sent was successful, False if it was unsuccessful
+        return data != "Message could not be delivered. Please try again."
 
     
     # function used to receive messages from the server
@@ -150,7 +166,7 @@ class ClientSocket:
         return True
     
     # function to update the local logical clock 
-    def update_local_logical_clock(self):
+    def update_local_logical_clock(self, received_logical_clock):
         # TODO
         return
     
@@ -188,16 +204,17 @@ class ClientSocket:
             
         # can only enter loop if you are logged in
         while True:
-            
+            # once initialized, carry out an action every 1/time_initialized seconds
+            time.sleep(1/self.time_breakdown)
             # get the first available message that has been sent to this machine
             received_msg = self.receive_messages(host, port)
 
             if received_msg != 'No messages available':
                 # deliver the first available message if there is one
-                num_remaining_messages = self.deliver_first_msg(received_msg)
+                received_logical_clock, num_remaining_messages = self.deliver_first_msg(received_msg)
 
                 # update the local logical clock for this machine
-                self.update_local_logical_clock()
+                self.update_local_logical_clock(received_logical_clock)
 
                 # log the deliver message event in the log file
                 self.log_event('RECEIVE', num_remaining_messages=num_remaining_messages)
@@ -209,7 +226,7 @@ class ClientSocket:
                 # if the action is 1 or 2, send the logical clock message to one of the other machines
                 if action == 1 or action == 2:
                     recipient_username = self.other_machines[action - 1]
-                    self.send_clock_message(host, port, self.clock_time, recipient_username)
+                    self.send_clock_message(host, port, recipient_username)
 
                     # update the local logical clock for this machine
                     self.update_local_logical_clock()
@@ -222,7 +239,7 @@ class ClientSocket:
                     recipient_one_username = self.other_machines[0]
                     recipient_two_username = self.other_machines[1]
                     
-                    self.send_clock_message(host, port, self.clock_time, recipient_one_username)
+                    self.send_clock_message(host, port, recipient_one_username)
 
                     # update the local logical clock for this machine
                     self.update_local_logical_clock()
@@ -230,7 +247,7 @@ class ClientSocket:
                     # log the event in the log file
                     self.log_event('SEND', recipient=recipient_one_username)
 
-                    self.send_clock_message(host, port, self.clock_time, recipient_two_username)
+                    self.send_clock_message(host, port, recipient_two_username)
 
                     # update the local logical clock for this machine
                     self.update_local_logical_clock()
