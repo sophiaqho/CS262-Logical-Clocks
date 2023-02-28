@@ -2,7 +2,9 @@ import os
 import socket
 import math
 import time
-import uuid
+from datetime import datetime
+import random
+import logging
 
 set_port = 8887
 set_host = ''
@@ -12,15 +14,20 @@ class ClientSocket:
 
     def __init__(self, client=None):
         # We store if the client is currently logged in (to see if they have permission to
-        # send/receive messages), their username, password, and 
+        # send/receive messages), their username, and 
         # queue of messages that they have received.
-
-        # All of these objects are stored in a dictionary on the server of [username : ClientSocket object]
 
         self.logged_in = False
         self.username = ''
         self.messages = []
         self.logical_clock_time = 0
+        self.other_machines = ['1', '2', '3']
+        self.logname = "Process"
+        self.log = None
+
+        self.time_breakdown = random.randint(1, 6)
+
+
         if client is None:
             self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
@@ -46,9 +53,12 @@ class ClientSocket:
     def getMessages(self):
         return self.messages
 
-    def emptyMessages(self):
-        self.messages = []
-
+    # returns the first message in the message queue and removes it from the queue
+    def getFirstMessage(self):
+        if self.messages:
+            return self.messages.pop(0)
+        return "No messages available."
+    
     def addMessage(self, message_string):
         self.messages.append(message_string)
 
@@ -66,8 +76,20 @@ class ClientSocket:
         data = self.client.recv(1024).decode()
 
         # Update ClientSocket object username and log in fields
-        self.username = data
+        self.username = str(data)
         self.logged_in = True
+        self.other_machines.remove(self.username)
+
+        # create a logger file name and use that name to create the log file for this user
+        self.logname = "Process" + self.username + "_" + str(datetime.now()) + ".csv"
+        logging.basicConfig(
+            filename=self.logname,
+            format='%(asctime)s,%(msecs)03d, %(message)s',
+            datefmt='%Y-%m-%d:%H:%M:%S',
+            level=logging.INFO)
+
+        self.log = logging.getLogger(__name__)
+        
         print('Your unique username is '  + data)
 
         return self.getUsername()
@@ -95,7 +117,8 @@ class ClientSocket:
     # function used to send a message to another user!/yourself!
     # returns True if message was delivered
     # False otherwise
-    def send_message(self, recipient_username, host, port, msg_content = None):
+        # sends to one of the other machine or two machines a message that is the local logical clock time
+    def send_clock_message(self, host, port, msg_content, recipient_username):
         # modified on server side to have
         self.client.sendto(('sendmsg' + self.getUsername() + recipient_username + str(self.logical_clock_time)).encode(), (host, port))
         # receive confirmation from the server that it was delivered or error message elsewhere
@@ -132,6 +155,20 @@ class ClientSocket:
         self.client.close()
         self.logged_in = False
         return True
+    
+    # function to update the local logical clock 
+    def update_local_logical_clock(self):
+        # TODO
+        return
+    
+    # function to log the internal event, the system time, and the logical clock value.
+    def log_event(self, action, recipient=None):
+        # add to the log file the action to the recipient 
+        formatted_message = action + '_' + recipient + ' , ' + self.logical_clock
+        # call on the logger to log the action into the log file
+        self.log.info(formatted_message)
+        return formatted_message
+
 
     # this is the main client program that we run- it calls on all subfunctions
     def client_program(self):
@@ -149,6 +186,27 @@ class ClientSocket:
             
         # can only enter loop if you are logged in
         if self.logged_in:
+
+            action = random.randint(1, 10)
+
+            if action == 1 or action == 2:
+                recipient_username = self.other_machines[action - 1]
+                self.send_clock_message(host, port, self.clock_time, recipient_username)
+                self.log_event('SEND', recipient_username)
+
+            elif action == 3:
+                recipient_one_username = self.other_machines[0]
+                recipient_two_username = self.other_machines[1]
+                
+                self.send_clock_message(host, port, self.clock_time, recipient_one_username)
+                self.log_event('SEND', recipient_one_username)
+
+                self.send_clock_message(host, port, self.clock_time, recipient_two_username)
+                self.log_event('SEND', recipient_two_username)
+                
+            else: 
+                self.update_local_logical_clock()
+                self.log_event('INTERNAL')
 
             message = input("""
             To send a message, enter the recipient username, 
