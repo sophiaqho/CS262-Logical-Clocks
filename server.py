@@ -42,6 +42,9 @@ class Server:
 
     # Function to add the message to the recipient's queue
     def add_message_to_queue(self, sender_username, recipient_username, message):
+        # checks if the recipient machine username is valid, returns False if not so we can throw an error later
+        if not self.is_username_valid(recipient_username):
+            return False
         # queue format is strings of sender_username + "" + message
         message_string = sender_username + message
         # lock mutex
@@ -55,23 +58,6 @@ class Server:
     # so there is less back & forth.
     # returns True upon successful message delivery. returns False if it fails.
     def deliver_message(self, sender_username, recipient_username, message, host, port, conn):
-        # If username is invalid, throw error message
-        # We do NOT need to know who the sender is- only recipient because
-        # recipient will increment their VC
-        # if not self.is_username_valid(recipient_username): 
-        #     recipient_not_found = "User not found."
-        #     print(recipient_not_found)
-        #     conn.sendto(recipient_not_found.encode(), (host, port))
-        #     return False
-
-        # # query the client for what the message is
-        # confirmed_found_recipient = "User found. Please enter your message: "
-        # print(confirmed_found_recipient)
-        # conn.sendto(confirmed_found_recipient.encode(), (host, port))
-
-        # server will receive what the message the client wants to send is 
-        # message = conn.recv(1024).decode()
-
         # regardless of client status (logged in or not), add the message to the recipient queue
         if self.add_message_to_queue(sender_username, recipient_username, message):
             # print + deliver confirmation
@@ -126,12 +112,13 @@ class Server:
     
         # get the first available message and the length of the remaining queue
         logical_clock_time, length = self.account_list.get(client_username).getFirstMessage()
-        # parse the first message containing the logical clock time with the length of the queue
-        # so we can send it to the client and the client can log it
-        msg = logical_clock_time + '_' + length
 
         # unlock mutex
         self.account_list_lock.release()
+
+        # parse the first message containing the logical clock time with the length of the queue
+        # so we can send it to the client and the client can log it
+        msg = logical_clock_time + '_' + length
 
         # send over the message with the logical clock time and the messages queue length
         conn.sendto(msg.encode(), (host, port))
