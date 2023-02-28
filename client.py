@@ -155,10 +155,21 @@ class ClientSocket:
         return
     
     # function to log the internal event, the system time, and the logical clock value.
-    def log_event(self, action, recipient=None):
-        # add to the log file the action to the recipient 
-        formatted_message = action + '_' + recipient + ' , ' + self.logical_clock
+    def log_event(self, action, recipient=None, num_remaining_messages=None):
+        # create string variables for common strings that are used multiple times in our logs
+        action_string = 'ACTION: '
+        logical_clock_string = ' , Logical Clock Time: '
+
+        # add to the log file the appropriate log depending on the input to the log_event function
+        if num_remaining_messages:
+            formatted_message = action_string + action + logical_clock_string + self.logical_clock + ' , # of remaining messages: ' + str(num_remaining_messages)
+        elif recipient:
+            formatted_message = action_string + action + ', Recipient Machine: ' + recipient + logical_clock_string + self.logical_clock
+        else:
+            formatted_message = action_string + action + logical_clock_string + self.logical_clock
+
         # call on the logger to log the action into the log file
+        # the log is in the format: `Global time action_recipientMachine, logical_clock, number of remaining messages`
         self.log.info(formatted_message)
         return formatted_message
 
@@ -183,13 +194,13 @@ class ClientSocket:
 
             if received_msg != 'No messages available':
                 # deliver the first available message if there is one
-                self.deliver_first_msg(received_msg)
+                num_remaining_messages = self.deliver_first_msg(received_msg)
 
                 # update the local logical clock for this machine
                 self.update_local_logical_clock()
 
                 # log the deliver message event in the log file
-                self.log_event('SEND', recipient_username)
+                self.log_event('RECEIVE', num_remaining_messages=num_remaining_messages)
 
             else:
                 # randomly generate a number between 1 and 10 to be our machine's action
@@ -204,7 +215,7 @@ class ClientSocket:
                     self.update_local_logical_clock()
 
                     # log the event in the log file
-                    self.log_event('SEND', recipient_username)
+                    self.log_event('SEND', recipient=recipient_username)
 
                 # if the action is 3, send the logical clock message to both of the other machines
                 elif action == 3:
@@ -217,7 +228,7 @@ class ClientSocket:
                     self.update_local_logical_clock()
 
                     # log the event in the log file
-                    self.log_event('SEND', recipient_one_username)
+                    self.log_event('SEND', recipient=recipient_one_username)
 
                     self.send_clock_message(host, port, self.clock_time, recipient_two_username)
 
@@ -225,7 +236,7 @@ class ClientSocket:
                     self.update_local_logical_clock()
 
                     # log the event in the log file
-                    self.log_event('SEND', recipient_two_username)
+                    self.log_event('SEND', recipient=recipient_two_username)
                     
                 else: 
                     # update the local logical clock for this machine
