@@ -25,7 +25,7 @@ class ClientSocket:
         self.log = None
 
         self.time_breakdown = random.randint(1, 6)
-        print("This machine carries out ", str(self.time_breakdown), "operations per second.")
+        print("This machine carries out", str(self.time_breakdown), "operations per second.")
         
         if client is None:
             self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
