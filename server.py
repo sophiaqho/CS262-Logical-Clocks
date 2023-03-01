@@ -150,8 +150,14 @@ class Server:
             if data.lower().strip()[:6] == 'create':
                 curr_user = self.create_username(host, port, conn)
 
+                # make the server sleep until at least three machiens are connected 
+                # to the server
+                # prevents the issue of one machine trying to send messages 
+                # to a machine that doesn't exist yet
                 while len(self.account_list) < 3:
-                    time.sleep(1/30)
+                    # make the server sleep for a time that is the LCM of 1 through 6 
+                    # because we can carry out 1 through 6 opertions per second
+                    time.sleep(1/10)
 
             # check if client request to send a message
             elif data.lower().strip()[:7] == 'sendmsg':
