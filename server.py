@@ -5,9 +5,9 @@ import time
 import uuid
 from _thread import *
 import threading
-from run_client import ClientSocket
+from client import ClientSocket
 
-set_port = 8887
+set_port = 8888
 set_host = ''
 
 class Server:
@@ -118,7 +118,7 @@ class Server:
 
         # parse the first message containing the logical clock time with the length of the queue
         # so we can send it to the client and the client can log it
-        msg = logical_clock_time + '_' + length
+        msg = logical_clock_time + '_' + str(length)
 
         # send over the message with the logical clock time and the messages queue length
         conn.sendto(msg.encode(), (host, port))
@@ -132,7 +132,7 @@ class Server:
         
         # keep track of the current client on this thread
         curr_user = ''
-        
+
         # while statement only breaks when client deletes their account
         # or if client exits on their side (closes connection)
         while True:
@@ -150,6 +150,8 @@ class Server:
             if data.lower().strip()[:6] == 'create':
                 curr_user = self.create_username(host, port, conn)
 
+                while len(self.account_list) < 3:
+                    time.sleep(1/30)
 
             # check if client request to send a message
             elif data.lower().strip()[:7] == 'sendmsg':
