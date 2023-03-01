@@ -234,7 +234,8 @@ class ClientSocket:
 
             else:
                 # randomly generate a number between 1 and 10 to be our machine's action
-                action = random.randint(1, 10)
+                # to run trials on internal probabilty of events- update this action
+                action = random.randint(1, 5)
 
                 # if the action is 1 or 2, send the logical clock message to one of the other machines
                 if action == 1 or action == 2:
