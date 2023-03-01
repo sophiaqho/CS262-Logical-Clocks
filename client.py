@@ -252,9 +252,6 @@ class ClientSocket:
                     
                     self.send_clock_message(host, port, recipient_one_username)
 
-                    # update the local logical clock for this machine
-                    self.update_local_logical_clock()
-
                     # log the event in the log file
                     self.log_event('SEND', recipient=recipient_one_username)
 
@@ -275,7 +272,7 @@ class ClientSocket:
 
             # once initialized, carry out an action every 1/time_initialized seconds
             time.sleep(1/self.time_breakdown)
-            
+
 
 # program creates a ClientSocket object and runs client_program which
 # handles input and directs it to the appropriate function
