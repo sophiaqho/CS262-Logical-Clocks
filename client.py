@@ -215,8 +215,6 @@ class ClientSocket:
         
         # can only enter loop if you are logged in
         while True:
-            # once initialized, carry out an action every 1/time_initialized seconds
-            time.sleep(1/self.time_breakdown)
             # get the first available message that has been sent to this machine
             received_msg = self.receive_messages(host, port)
 
@@ -275,10 +273,9 @@ class ClientSocket:
                     # log the event in the log file
                     self.log_event('INTERNAL')
 
-            # # will only exit while loops on 'exit' or 'delete'
-            # # read undelivered messages for exit
-            # if message.strip() == 'exit':
-                # self.client_exit()
+            # once initialized, carry out an action every 1/time_initialized seconds
+            time.sleep(1/self.time_breakdown)
+            
 
 # program creates a ClientSocket object and runs client_program which
 # handles input and directs it to the appropriate function
