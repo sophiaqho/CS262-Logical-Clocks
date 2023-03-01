@@ -25,6 +25,7 @@ class ClientSocket:
         self.log = None
 
         self.time_breakdown = random.randint(1, 6)
+        print("This machine carries out", str(self.time_breakdown), "operations per second.")
         
         if client is None:
             self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -183,13 +184,13 @@ class ClientSocket:
     def log_event(self, action, recipient=None, num_remaining_messages=None):
         # create string variables for common strings that are used multiple times in our logs
         action_string = 'ACTION: '
-        logical_clock_string = ' , Logical Clock Time: '
+        logical_clock_string = ', Logical Clock Time: '
         # convert the logical clock vector to a string containing each vector value in the format `[clock1, clock2, clock3]`
         logical_clock_vector = "[" + str(self.logical_clock_time[0]) + ", " + str(self.logical_clock_time[1]) + ", " + str(self.logical_clock_time[2]) + "]"
 
         # add to the log file the appropriate log depending on the input to the log_event function
         if num_remaining_messages:
-            formatted_message = action_string + action + logical_clock_string + logical_clock_vector + ' , # of remaining messages: ' + str(num_remaining_messages)
+            formatted_message = action_string + action + logical_clock_string + logical_clock_vector + ', # of remaining messages: ' + str(num_remaining_messages)
         elif recipient:
             formatted_message = action_string + action + ', Recipient Machine: ' + recipient + logical_clock_string + logical_clock_vector
         else:
