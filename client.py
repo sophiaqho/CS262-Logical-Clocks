@@ -49,6 +49,7 @@ class ClientSocket:
     
     def addMessage(self, message_string):
         self.messages.append(message_string)
+        return self.messages
 
 
     # Function to create a new account
