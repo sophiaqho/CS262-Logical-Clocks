@@ -176,12 +176,11 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(expected_output, received_message_output)
         self.assertEqual(expected_queue_length, received_length)
 
-    # testing the function that updates a machines local logical clock on an INTERNAL event
+    # testing the send clock messages function with an invalid username input
     def test_send_clock_messages_invalid_recipient(self):
         # create an invalid recipient username
         invalid_machine_username = "8"
         # clear messages to ensure you are able to send a message
-        # there may be some issue here with optionality ?
         self.client_socket.messages = []
 
         # pass in the invalid username to the send_clock_message function
@@ -191,6 +190,19 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(send_clock_message_output, False)
 
     # TODO add send message to valid username function (send message to itself)
+
+    # testing the send clock messages function with a valid input username
+    def test_send_clock_messages_valid_recipient(self):
+        # create an invalid recipient username
+        valid_machine_username = "1"
+        # clear messages to ensure you are able to send a message
+        self.client_socket.messages = []
+
+        # pass in the valid username to the send_clock_message function
+        send_clock_message_output = self.client_socket.send_clock_message(set_host, set_port, valid_machine_username)
+        # the send_clock_message should return True on a valid user
+        # checks that the function correctly returns True
+        self.assertEqual(send_clock_message_output, True)
 
     # testing the receive message function on empty queue
     def test_receive_empty_message(self):
@@ -204,8 +216,40 @@ class TestStringMethods(unittest.TestCase):
         # check that the function output matches the expected output
         self.assertEqual(expected_output, receive_message_output)
 
-    # TODO add receive valid message function
+    # testing the receive message function on a queue with one message
+    def test_receive_first_message(self):
+        # set the machine username for the messages to be retrived for
+        valid_machine_username = "1"
 
+        # send a message to be added to the queue
+        self.client_socket.send_clock_message(set_host, set_port, valid_machine_username)
+
+        # call on the receive messages function when there is a message in the queue
+        receive_message_output = self.client_socket.receive_messages(set_host, set_port)
+
+        # the expected message output/format
+        expected_output = "1/0/0/0" + "_" + "0"
+
+        # check that the function output matches the expected output
+        self.assertEqual(expected_output, receive_message_output)
+
+    # testing the receive message function on a queue with multiple messages
+    def test_receive_first_message_multiple(self):
+        # set the message queue to have two different dummy clocks for this test
+        valid_machine_username = "1"
+        # send first message to the queue
+        self.client_socket.send_clock_message(set_host, set_port, valid_machine_username)
+        # send the second message to the machine's message queue
+        self.client_socket.send_clock_message(set_host, set_port, valid_machine_username)
+
+        # call on the receive messages function when there are messages in the queue
+        receive_message_output = self.client_socket.receive_messages(set_host, set_port)
+
+        # the expected message output/format
+        expected_output = "1/0/0/0" + "_" + "1"
+
+        # check that the function output matches the expected output
+        self.assertEqual(expected_output, receive_message_output)
 
     # testing the log events function
     def test_log_internal_event(self):
