@@ -22,7 +22,9 @@ set_host = ''
 # https://docs.python.org/2/library/unittest.html from section 25.3.1 
 
 class TestStringMethods(unittest.TestCase):
-    def setUp(self):
+
+    @classmethod
+    def setUpClass(self):
         self.client_socket = ClientSocket()
         host = set_host
         port = set_port
@@ -38,6 +40,7 @@ class TestStringMethods(unittest.TestCase):
         print("Testing the CREATE USERNAME function")
         # creating the test user client account
         created_username = self.client_socket.create_client_username(set_host, set_port)
+        # checking that the created username is equal to teh expected username
         self.assertEqual(created_username, self.client_socket.getUsername())
 
     # testing the message parsing function
@@ -63,7 +66,7 @@ class TestStringMethods(unittest.TestCase):
     # testing the message parsing function on invalid message input
     def test_parse_live_message_invalid_input(self):
         print("Testing the PARSE LIVE MESSAGE function")
-        # create a message to be parsed
+        # create an message to be parsed
         # message will be formatted as `SenderUsername/time1/time2/time3_length_length`
         message = "1/2/3/2_2_2"
        
@@ -73,7 +76,7 @@ class TestStringMethods(unittest.TestCase):
     # testing the message parsing function on invalid logical clock input
     def test_parse_live_message_invalid_clock(self):
         print("Testing the PARSE LIVE MESSAGE function")
-        # create a message to be parsed
+        # create an invalid message to be parsed
         # message will be formatted as `SenderUsername/time1/time2/time3/time4_length`
         message = "1/2/3/3/2_2"
 
@@ -102,7 +105,7 @@ class TestStringMethods(unittest.TestCase):
     def test_get_messages(self):
         print("Testing the GET MESSAGES function")
         # create a dummy message to add to the queue
-        message = "[clock1, clock2, clock3]"
+        message = "[1, 2, 3]"
 
         # creating the test user
         # self.client_socket.create_client_username(set_host, set_port)
@@ -115,19 +118,83 @@ class TestStringMethods(unittest.TestCase):
         is_in_message_list = message in list_of_messages
         self.assertEqual(is_in_message_list, True)
 
-    # testing the get messages function on an empty message queue
-    def test_get_empty_messages(self):
-        print("Testing the GET MESSAGES function on empty messages")
 
-        # creating the test user
-        # self.client_socket.create_client_username(set_host, set_port)
-        # don't add any messages to the message queue
+    # testing the function that updates a machines local logical clock on an EXTERNAL event
+    def test_update_logical_clock_external(self):
+        # set the local logical clock vector so we can test updating it
+        self.client_socket.logical_clock = [0, 0, 0]
+
+        # pass in a dummy logical clock to the function that is received from another machine
+        updated_logical_clock = self.client_socket.update_local_logical_clock([2, 3, 4])
+
+        # this is the expected values of the logical clock vector
+        expected_logical_clock = [3, 3, 4]
+
+        # check that the function returns the correctly updated local logical clock
+        self.assertEqual(expected_logical_clock, updated_logical_clock)
+
+    # testing the function that updates a machines local logical clock on an INTERNAL event
+    def test_update_logical_clock_internal(self):
+        # get the value of the current local logical clock vector so we can test updating it
+        cur_clock = self.client_socket.logical_clock_time 
         
-        # getting the queue of all messages
-        list_of_messages = self.client_socket.getMessages()
-        
-        # checking if the the message queue is empty
-        self.assertEqual(list_of_messages == [], True)
+        # this is the expected values of the logical clock vector after it gets updated
+        expected_logical_clock = [cur_clock[0] + 1, cur_clock[1], cur_clock[2]]
+
+        # call the update logical clock function for an internal event
+        updated_logical_clock = self.client_socket.update_local_logical_clock()
+
+        # check that the function returns the correctly updated local logical clock
+        self.assertEqual(expected_logical_clock, updated_logical_clock)
+
+    # # testing the function that updates a machines local logical clock on an INTERNAL event
+    # def test_send_clock_messages_invalid_recipient(self):
+    #     # create an invalid recipient username
+    #     invalid_machine_username = "8"
+
+    #     # pass in the invalid username to the send_clock_message function
+    #     send_clock_message_output = self.client_socket.send_clock_message(set_host, set_port, invalid_machine_username)
+    #     # the send_clock_message should return False on an invalid user
+    #     # checks that the function correctly returns False
+    #     self.assertEqual(send_clock_message_output, False)
+
+    # testing the receive message function 
+
+    # testing the log events function
+    def test_log_internal_event(self):
+        # create expected output string for the log function
+        expected_output_string = 'ACTION: ' + "INTERNAL" + ", Logical Clock Time: " + "[" + str(self.client_socket.logical_clock_time[0]) + ", " + str(self.client_socket.logical_clock_time[1]) + ", " + str(self.client_socket.logical_clock_time[2]) + "]"
+
+        # call on the log event function on an INTERNAL event
+        log_event_output = self.client_socket.log_event("INTERNAL")
+
+        # check that the function returns the correctly updated local logical clock
+        self.assertEqual(expected_output_string, log_event_output)
+
+
+    # testing the log events function
+    def test_log_external_event_receive_message(self):
+        # create expected output string for the log function
+        expected_output_string = 'ACTION: ' + "RECEIVE" + ", Logical Clock Time: " + "[" + str(self.client_socket.logical_clock_time[0]) + ", " + str(self.client_socket.logical_clock_time[1]) + ", " + str(self.client_socket.logical_clock_time[2]) + "]" + ', # of remaining messages: ' + "2"
+
+        # call on the log event function on an INTERNAL event
+        log_event_output = self.client_socket.log_event("RECEIVE", num_remaining_messages="2")
+
+        # check that the function returns the correctly updated local logical clock
+        self.assertEqual(expected_output_string, log_event_output)
+
+
+    # testing the log events function
+    def test_log_event_send_message(self):
+        # create expected output string for the log function
+        expected_output_string = 'ACTION: ' + "SEND" + ', Recipient Machine: ' + "2" + ", Logical Clock Time: " + "[" + str(self.client_socket.logical_clock_time[0]) + ", " + str(self.client_socket.logical_clock_time[1]) + ", " + str(self.client_socket.logical_clock_time[2]) + "]"
+
+        # call on the log event function on an INTERNAL event
+        log_event_output = self.client_socket.log_event("SEND", recipient="2")
+
+        # check that the function returns the correctly updated local logical clock
+        self.assertEqual(expected_output_string, log_event_output)
+
 
     # # testing our create account function
     # def test_create_account(self):

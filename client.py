@@ -198,10 +198,13 @@ class ClientSocket:
         logical_clock_vector = "[" + str(self.logical_clock_time[0]) + ", " + str(self.logical_clock_time[1]) + ", " + str(self.logical_clock_time[2]) + "]"
 
         # add to the log file the appropriate log depending on the input to the log_event function
+        # log if you received a message
         if num_remaining_messages:
             formatted_message = action_string + action + logical_clock_string + logical_clock_vector + ', # of remaining messages: ' + str(num_remaining_messages)
+        # log if you sent a message to another machine(s)
         elif recipient:
             formatted_message = action_string + action + ', Recipient Machine: ' + recipient + logical_clock_string + logical_clock_vector
+        # log for an internal event
         else:
             formatted_message = action_string + action + logical_clock_string + logical_clock_vector
 

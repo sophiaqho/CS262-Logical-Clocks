@@ -34,7 +34,7 @@ class Server:
     def is_username_valid(self, recipient_username):
         # lock mutex as we access account_list
         self.account_list_lock.acquire()
-        result =  recipient_username in self.account_list
+        result = recipient_username in self.account_list
         # unlock mutex
         self.account_list_lock.release()
         return result
