@@ -16,7 +16,7 @@ import unittest
 from client import ClientSocket
 from server import Server
 
-set_port = 8889
+set_port = 8888
 set_host = ''
 
 # https://docs.python.org/2/library/unittest.html from section 25.3.1 

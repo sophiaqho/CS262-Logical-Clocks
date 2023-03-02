@@ -21,95 +21,121 @@ import math
 import time
 import uuid
 import unittest
-from run_server import Server
+from server import Server
+from client import ClientSocket
 
 # https://docs.python.org/2/library/unittest.html from section 25.3.1 
 # Adapted from section 25.3.4
 
-set_port = 8887
+set_port = 8889
 set_host = ''
 
 class SimpleServerTestCase(unittest.TestCase):
-    #create only one instance to avoid multiple instantiations
-    def setUp(self):
+    # create only one instance to avoid multiple instantiations
+    @classmethod
+    def setUpClass(self):
         self.server_instance = Server()
 
         #set up host, port, create connection
-        host = ''
-        port = 8887
-        self.server_instance.server.bind((host, port))
+        self.server_instance.server.bind((set_host, set_port))
         print('Server is active.')
 
         # accept incoming connections
         self.server_instance.server.listen()
-        conn, addr = self.server_instance.server.accept()
+
+        self.client_socket = ClientSocket()
+        self.client_socket.client.connect((set_host, set_port))
+
+        self.conn, self.addr = self.server_instance.server.accept()
 
     def tearDown(self):
         #conn.close()
         print('shut downwnn')
     
+    # testing the create username function
     def test_create_account(self):
-       # test create- see if the username + password are properly updated
+       # test create- see if the username is properly created
         print("Testing the CREATE function")
-        created_username = self.server_instance.create_username(set_host, set_port, conn)
-    #     created_username = self.client_socket.create_client_username("create", set_host, set_port)
-    #     self.assertEqual(created_username, self.client_socket.getUsername())
-    #     self.assertEqual(expected_password, self.client_socket.getPassword())
+
+        # call on the server's create username function
+        created_username = self.server_instance.create_username(set_host, set_port, self.conn)
+
+        # the expected username value for the created username
+        expected_username = "1"
+
+        # check that the created username matches the expected username value
+        self.assertEqual(expected_username, created_username)
+
+    # testing the is_username_valid function on a valid username
+    def test_is_username_valid(self):
+        print("Testing the IS_USERNAME_VALID function on a valid input")
+        # create a variable to store a valid/existing username
+        valid_username = "1"
+        print("HEHLLO0000", self.server_instance.account_list)
+
+        # call on the server's is_username_valid function
+        is_username_valid_output = self.server_instance.is_username_valid(valid_username)
+
+        # check that the is_username_valid outputs True because the username is valid
+        self.assertEqual(is_username_valid_output, True)
+
+
+    # testing the is_username_valid function on an invalid username
+    def test_is_username_invalid(self):
+        print("Testing the IS_USERNAME_VALID function on an invalid input")
+        # create a variable to store a valid/existing username
+        invalid_username = "8"
+
+        # call on the server's is_username_valid function
+        is_username_valid_output = self.server_instance.is_username_valid(invalid_username) 
+
+        # check that the is_username_valid outputs False because the username is invalid
+        self.assertEqual(is_username_valid_output, False)
+
+    # NOTE: We do not test the add_message_to_queue function because this function
+    # is calling upong the is_username_valid function and the addMessages function, 
+    # both of which are already covered in our unit tests. 
+
+    # NOTE: We do not test the deliver_message function because this function
+    # is calling upong the add_message_to_queue function which has already been covered 
+    # in our other unit test cases. 
+        
+    # NOTE: We do not test the send_client_messages function because this function
+    # requires client integration and it just calls on the getFirstMessage function
+    # on the Client code. This function has already been covered in our Client 
+    # unit test cases. 
+
+    # # testing the add_message_to_queue function for a valid recipient
+    # def test_add_message_to_queue_valid(self):
+    #     print("Testing the ADD_MESSAGE_TO_QUEUE function on a valid recipient")
+    #     # create a variable to store a valid/existing username
+    #     machine_username = "1"
+    #     message = "[we, <3, cs262]"
+    #     print("HEHLLO", self.server_instance.account_list)
+
+    #     # call on the server's add_message_to_queue function
+    #     add_message_output = self.server_instance.add_message_to_queue(machine_username, machine_username, message)
+
+    #     # check that the add_message_to_queue outputs True because the recipient is valid
+    #     self.assertEqual(add_message_output, True)
+
+
+    # testing the add_message_to_queue function for a valid recipient
+    def test_add_message_to_queue_invalid(self):
+        print("Testing the ADD_MESSAGE_TO_QUEUE function on an invalid recipient")
+        # create a variable to store a valid/existing username
+        sender_username = "1"
+        recipient_username = "8"
+        message = "[we, <3<3, cs262]"
+
+        # call on the server's is_username_valid function
+        add_message_output = self.server_instance.add_message_to_queue(sender_username, recipient_username, message)
+
+        # check that the add_message_to_queue outputs False because the recipient is invalid
+        self.assertEqual(add_message_output, False)
+
+
 
        
-    # def test_login_account(self):
-    #     print("Testing the LOGIN function")
-    #     # test will only pass if you enter the correct password- try it out!
-    #     # want to exit out of the account to see whether that works
-    #     created_username = self.client_socket.create_client_username("create", set_host, set_port)
-    #     print("Username is:", created_username)
-    #     # log out of the account
-    #     self.client_socket.client.send('exit'.encode())
-
-    #     # log into the account
-    #     username_logged_into = self.client_socket.login_client_account("login", set_host, set_port)
-    #     # enter the username, password = 'hi'
-    #     # if the password is wrong, it will not log in.
-    #     self.assertEqual(created_username, username_logged_into)
-
-    # def test_delete_account(self):
-    #     print("Testing the DELETE function")
-    #     # assert that after we have created an account, it is deleted (returns True)
-    #     self.client_socket.create_client_username("create", set_host, set_port)
-    #     self.assertEqual(self.client_socket.delete_client_account("delete", set_host, set_port), True)
-    
-    # def test_send_messages(self):
-    #     print("Testing the SEND MESSAGE function. For the message, please enter 'abc'.")
-    #     sender_username = self.client_socket.create_client_username("create", set_host, set_port)
-    #     other_username = input("Please enter the username of the OTHER client terminal: ")
-    #     confirmation_from_server = self.client_socket.send_message(other_username, set_host, set_port)
-    #     expected_confirmation = "Delivered message '" + "abc" + " ...' to " + other_username + " from " + sender_username
-    #     self.assertEqual(confirmation_from_server, expected_confirmation)
-
-    # def test_receive_messages(self):
-    #     print("Testing the RECEIVE MESSAGE function.")
-    #     curr_username = self.client_socket.create_client_username("create", set_host, set_port)
-    #     print("Your username is " + curr_username + ".")
-    #     print("Please enter this username in the OTHER client terminal and send 'abc' as your message")
-    #     other_username = input("Please enter the username of the OTHER client terminal: ")
-    #     confirmation_from_server = self.client_socket.receive_messages(set_host, set_port)
-    #     expected_confirmation = "we_love_cs262" + other_username + "abc"
-    #     self.assertEqual(confirmation_from_server, expected_confirmation)
-
-    # def test_view_account_list(self):
-    #     print("Testing the VIEW ACCOUNTS function")
-
-    #     self.client_socket.create_client_username("create", set_host, set_port)
-    #     list_of_accounts = self.client_socket.list_accounts("listaccts", set_host, set_port)
-    #     is_in_account_list = self.client_socket.getUsername() in list_of_accounts
-    #     self.assertEqual(is_in_account_list, True)
-
-    # def list_empty_account_test(self):
-    #     #make the test where you can see that the length 
-    #     #once you let users choose their username, this will be easier to test
-    #     # TODO- update once we have username input
-    #     self.assertEqual('[]', self.server_instance.list_accounts()[1],
-    #                      'incorrect accounts available')
-
 if __name__ == '__main__':
     unittest.main()

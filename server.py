@@ -7,7 +7,7 @@ import threading
 from client import ClientSocket
 import sys
 
-set_port = 8889
+set_port = 8888
 set_host = ''
 
 class Server:
