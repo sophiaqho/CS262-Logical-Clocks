@@ -89,6 +89,10 @@ class ClientSocket:
         # message format is `SenderUsername/time1/time2/time3_length`
         # username is 1 characters total (fixed length)
         parsed_message = message.split("_")
+
+        # check that the input message is valid
+        if len(parsed_message) != 2:
+            raise NameError('Invalid Input')
         
         # get the string of the new logical clock received from the server
         # the format of this variable will be `time1/time2/time3`
@@ -96,6 +100,10 @@ class ClientSocket:
 
         # parse the string of the received logical clock to be split by "/"
         logical_clock_vector = received_logical_clock.split("/")
+        
+        # check that the logical clock vector in the input message is valid
+        if len(logical_clock_vector) != 3:
+            raise NameError('Invalid Logical Clock Input')
 
         # convert each string in the array to an int of the logical clock time
         logical_clock_vector = [int(x) for x in logical_clock_vector]

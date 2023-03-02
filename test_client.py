@@ -29,8 +29,56 @@ class TestStringMethods(unittest.TestCase):
 
         self.client_socket.client.connect((host, port))
 
-    def tearDown(self):
-        self.client_socket.client.close()
+    # def tearDown(self):
+        # self.client_socket.client.close()
+
+    # testing the create machine client username function
+    def test_create_machine_username(self):
+        # test create- see if the username + password are properly updated
+        print("Testing the CREATE USERNAME function")
+        # creating the test user client account
+        created_username = self.client_socket.create_client_username(set_host, set_port)
+        self.assertEqual(created_username, self.client_socket.getUsername())
+
+    # testing the message parsing function
+    def test_parse_live_message(self):
+        print("Testing the PARSE LIVE MESSAGE function")
+        # create a message to be parsed
+        # message will be formatted as `SenderUsername/time1/time2/time3_length`
+        message = "1/2/3/2_2"
+
+        # call the parse message function on our test message
+        sender_username, logical_clock_vector, remaining_messages = self.client_socket.parse_live_message(message)
+       
+        # define variables for what we expect `parse_live_message` to return 
+        expected_sender_username = "1"
+        expected_logical_clock_vector = [2, 3, 2]
+        expected_remaining_messages = "2"
+
+        # see if the message was parsed as expected
+        self.assertEqual(expected_sender_username, sender_username)
+        self.assertEqual(expected_logical_clock_vector, logical_clock_vector)
+        self.assertEqual(expected_remaining_messages, remaining_messages)
+
+    # testing the message parsing function on invalid message input
+    def test_parse_live_message_invalid_input(self):
+        print("Testing the PARSE LIVE MESSAGE function")
+        # create a message to be parsed
+        # message will be formatted as `SenderUsername/time1/time2/time3_length_length`
+        message = "1/2/3/2_2_2"
+       
+        # see if the function raises an error
+        self.assertRaises(NameError, self.client_socket.parse_live_message, message)
+
+    # testing the message parsing function on invalid logical clock input
+    def test_parse_live_message_invalid_clock(self):
+        print("Testing the PARSE LIVE MESSAGE function")
+        # create a message to be parsed
+        # message will be formatted as `SenderUsername/time1/time2/time3/time4_length`
+        message = "1/2/3/3/2_2"
+
+        # see if the function raises an error on the invalid logical clock
+        self.assertRaises(NameError, self.client_socket.parse_live_message, message)
 
     # testing the add message function
     def test_add_message(self):
@@ -39,7 +87,7 @@ class TestStringMethods(unittest.TestCase):
         message = "[clock1, clock2, clock3]"
 
         # creating the test user
-        self.client_socket.create_client_username(set_host, set_port)
+        # self.client_socket.create_client_username(set_host, set_port)
         self.client_socket.addMessage(message)
         
         # getting the queue of all messages
@@ -57,7 +105,7 @@ class TestStringMethods(unittest.TestCase):
         message = "[clock1, clock2, clock3]"
 
         # creating the test user
-        self.client_socket.create_client_username(set_host, set_port)
+        # self.client_socket.create_client_username(set_host, set_port)
         self.client_socket.addMessage(message)
         
         # getting the queue of all messages
@@ -72,7 +120,7 @@ class TestStringMethods(unittest.TestCase):
         print("Testing the GET MESSAGES function on empty messages")
 
         # creating the test user
-        self.client_socket.create_client_username(set_host, set_port)
+        # self.client_socket.create_client_username(set_host, set_port)
         # don't add any messages to the message queue
         
         # getting the queue of all messages
