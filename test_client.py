@@ -16,7 +16,7 @@ import unittest
 from client import ClientSocket
 from server import Server
 
-set_port = 8888
+set_port = 8889
 set_host = ''
 
 # https://docs.python.org/2/library/unittest.html from section 25.3.1 
@@ -147,18 +147,65 @@ class TestStringMethods(unittest.TestCase):
         # check that the function returns the correctly updated local logical clock
         self.assertEqual(expected_logical_clock, updated_logical_clock)
 
-    # # testing the function that updates a machines local logical clock on an INTERNAL event
-    # def test_send_clock_messages_invalid_recipient(self):
-    #     # create an invalid recipient username
-    #     invalid_machine_username = "8"
+    # testing the get first message function on empty message queue
+    def test_get_first_message(self):
+        # set the message queue to be empty for this test
+        self.client_socket.messages = ["[we, love, cs262]", "[we, rly_love, cs262]"]
 
-    #     # pass in the invalid username to the send_clock_message function
-    #     send_clock_message_output = self.client_socket.send_clock_message(set_host, set_port, invalid_machine_username)
-    #     # the send_clock_message should return False on an invalid user
-    #     # checks that the function correctly returns False
-    #     self.assertEqual(send_clock_message_output, False)
+        # call on the receive messages function when the message queue is empty
+        received_message_output, received_length = self.client_socket.getFirstMessage()
 
-    # testing the receive message function 
+        # expected output of the function on an empty queue
+        expected_output, expected_queue_length = "[we, love, cs262]", 1
+
+        # check that the function output matches the expected output
+        self.assertEqual(expected_output, received_message_output)
+        self.assertEqual(expected_queue_length, received_length)
+
+    # testing the get first message function on empty message queue
+    def test_get_first_message_empty(self):
+        # set the message queue to be empty for this test
+        self.client_socket.messages = []
+        # call on the receive messages function when the message queue is empty
+        received_message_output, received_length = self.client_socket.getFirstMessage()
+
+        # expected output of the function on an empty queue
+        expected_output, expected_queue_length = "No messages available", 0
+
+        # check that the function output matches the expected output
+        self.assertEqual(expected_output, received_message_output)
+        self.assertEqual(expected_queue_length, received_length)
+
+    # testing the function that updates a machines local logical clock on an INTERNAL event
+    def test_send_clock_messages_invalid_recipient(self):
+        # create an invalid recipient username
+        invalid_machine_username = "8"
+        # clear messages to ensure you are able to send a message
+        # there may be some issue here with optionality ?
+        self.client_socket.messages = []
+
+        # pass in the invalid username to the send_clock_message function
+        send_clock_message_output = self.client_socket.send_clock_message(set_host, set_port, invalid_machine_username)
+        # the send_clock_message should return False on an invalid user
+        # checks that the function correctly returns False
+        self.assertEqual(send_clock_message_output, False)
+
+    # TODO add send message to valid username function (send message to itself)
+
+    # testing the receive message function on empty queue
+    def test_receive_empty_message(self):
+        # set the message queue to be empty for this test
+        self.client_socket.messages = []
+        # call on the receive messages function when the message queue is empty
+        receive_message_output = self.client_socket.receive_messages(set_host, set_port)
+
+        expected_output = "No messages available" + "_" + "0"
+
+        # check that the function output matches the expected output
+        self.assertEqual(expected_output, receive_message_output)
+
+    # TODO add receive valid message function
+
 
     # testing the log events function
     def test_log_internal_event(self):
@@ -196,189 +243,6 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(expected_output_string, log_event_output)
 
 
-    # # testing our create account function
-    # def test_create_account(self):
-    #     # test create- see if the username + password are properly updated
-    #     print("Testing the CREATE function")
-    #     # creating the test user client account
-    #     created_username = self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     self.assertEqual(created_username, self.client_socket.getUsername())
-    #     self.assertEqual(expected_password, self.client_socket.getPassword())
-
-       
-    # # testing our login account function
-    # def test_login_account(self):
-    #     print("Testing the LOGIN function")
-    #     # test will only pass if you enter the correct password- try it out!
-    #     # want to exit out of the account to see whether that works
-    #     # creating the test user client account
-    #     created_username = self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     print("Username is:", created_username)
-    #     # log out of the account
-    #     self.client_socket.client.send('exit'.encode())
-
-    #     # log into the account
-    #     username_logged_into = self.client_socket.login_client_account("login", set_host, set_port, usrname_input=created_username, pwd_input=expected_password)
-    #     self.assertEqual(created_username, username_logged_into)
-
-    # # testing logging into an account with an incorrect password
-    # def test_incorrect_login_password(self):
-    #     print('Testing the LOGIN function - incorrect password')
-    #     # test will only pass if you enter an incorrect password- try it out!
-    #     # want to exit out of the account to see whether that works
-    #     # creating the test user client account
-    #     created_username = self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     print("Username is:", created_username)
-    #     # log out of the account
-    #     self.client_socket.client.send('exit'.encode())
-
-    #     # fail the log attempt into the account
-    #     login_status, _ = self.client_socket.send_login_information("login", set_host, set_port, usrname_input=created_username, pwd_input="h")
-    #     self.assertEqual(login_status, False)
-
-    # # testing logging into an account with an incorrect username
-    # def test_incorrect_login_username(self):
-    #     print('Testing the LOGIN function - incorrect username')
-    #     # test will only pass if you enter an incorrect password- try it out!
-    #     # want to exit out of the account to see whether that works
-    #     # creating the test user client account
-    #     created_username = self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     print("Username is:", created_username)
-    #     # log out of the account
-    #     self.client_socket.client.send('exit'.encode())
-
-    #     # fail the log attempt into the account
-    #     login_status, _ = self.client_socket.send_login_information("login", set_host, set_port, usrname_input="bogus_username", pwd_input=expected_password)
-    #     self.assertEqual(login_status, False)
-
-    # # testing exiting/logging out from your account
-    # def test_exit_account(self):
-    #     print('Testing the EXIT function')
-    #     # assert that after we have created an account, we can successfully log out/exit.
-    #     self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     self.assertEqual(self.client_socket.client_exit(), True)
-
-    # # testing deleting your account
-    # def test_delete_account(self):
-    #     print("Testing the DELETE function")
-    #     # assert that after we have created an account, it is deleted (returns True)
-    #     # creating the test user client account
-    #     self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     self.assertEqual(self.client_socket.delete_client_account(set_host, set_port), True)
-    
-    # # testing sending messages yourself
-    # def test_send_messages_to_self(self):
-    #     print("Testing the SEND MESSAGE function to yourself. ")
-    #     # create a new user
-    #     sender_username = self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     # send message to yourself
-    #     confirmation_from_server = self.client_socket.send_message(sender_username, set_host, set_port, msg_content=msg_content)
-    #     # see if the message was delivered as expected
-    #     expected_confirmation = "Delivered message '" + msg_content + " ...' to " + sender_username + " from " + sender_username
-    #     self.assertEqual(confirmation_from_server, expected_confirmation)
-
-    # # testing recieving messages from yourself
-    # def test_receive_messages_to_self(self):
-    #     print("Testing the RECEIVE MESSAGE function to yourself.")
-        
-    #     # create a new test user
-    #     curr_username = self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-        
-    #     # send message to yourself
-    #     self.client_socket.send_message(curr_username, set_host, set_port, msg_content=msg_content)
-        
-    #     # see if the message is received from the server
-    #     confirmation_from_server = self.client_socket.receive_messages(set_host, set_port)
-    #     expected_confirmation = "we_love_cs262" + curr_username + "abc"
-    #     self.assertEqual(confirmation_from_server, expected_confirmation)
-
-    # # testing sending messages to another account
-    # def test_send_messages_to_others(self):
-    #     print("Testing the SEND MESSAGE function to another client.")
-    #     # creating the test user client account
-    #     sender_username = self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     time.sleep(1)
-
-    #     # make other client
-    #     other_client = ClientSocket()
-    #     other_client.client.connect((set_host, set_port))
-    #     other_username = other_client.create_client_username(set_host, set_port, pwd_client=expected_password)
-       
-    #     # comparing the confirmation from the server with expected confirmation
-    #     confirmation_from_server = self.client_socket.send_message(other_username, set_host, set_port, msg_content=msg_content)
-    #     expected_confirmation = "Delivered message '" + msg_content + " ...' to " + other_username + " from " + sender_username
-    #     self.assertEqual(confirmation_from_server, expected_confirmation)
-    #     # exit other socket
-    #     other_client.client_exit()
-
-    # # testing receiving messages from another account
-    # def test_receive_messages_from_others(self):
-    #     print("Testing the RECEIVE MESSAGE function to another client.")
-    #     # creating the test user client recipient
-    #     recipient_username = self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     time.sleep(1)
-
-    #     # make other client
-    #     other_client = ClientSocket()
-    #     other_client.client.connect((set_host, set_port))
-    #     other_username = other_client.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     # send message to recipient
-    #     other_client.send_message(recipient_username, set_host, set_port, msg_content=msg_content)
-    #     time.sleep(1)
-
-    #     # confirmation you expect to receive from the server
-    #     confirmation_from_server = self.client_socket.receive_messages(set_host, set_port)
-    #     expected_confirmation = "we_love_cs262" + other_username + "abc"
-    #     self.assertEqual(confirmation_from_server, expected_confirmation)
-
-    #     # exit other socket
-    #     other_client.client_exit()
-
-    # # testing sending messages to an account that does not exist
-    # def test_send_messages_to_nonexistent_user(self):
-    #     print("Testing the SEND MESSAGE function to a nonexistent client username.")
-    #     # creating the test user client account to send messages from
-    #     self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     time.sleep(1)
-
-    #     # create nonexistent client username
-    #     nonexistent_username = "nonexistent_client_username"
-
-    #     # expected confirmation from the server
-    #     confirmation_from_server = self.client_socket.send_message(nonexistent_username, set_host, set_port, msg_content=msg_content)
-    #     expected_confirmation = "User not found."
-    #     self.assertEqual(confirmation_from_server, expected_confirmation)
-
-    # # testing receiving messages with no available messages
-    # def test_receive_empty_messages(self):
-    #     print("Testing the RECEIVE MESSAGE function with no available messages.")
-    #     # creating the test user client account to get messages for
-    #     self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-    #     time.sleep(1)
-
-    #     # confirmation you expect to receive 
-    #     confirmation_from_server = self.client_socket.receive_messages(set_host, set_port)
-    #     expected_confirmation = "No messages available"
-    #     self.assertEqual(confirmation_from_server, expected_confirmation)
-
-    # # testing the view all accounts function
-    # def test_view_account_list(self):
-    #     print("Testing the VIEW ACCOUNTS function")
-    #     # creating the test user
-    #     self.client_socket.create_client_username(set_host, set_port, pwd_client=expected_password)
-        
-    #     # getting the list of all accounts 
-    #     list_of_accounts = self.client_socket.list_accounts("listaccts", set_host, set_port)
-        
-    #     # checking if the test user exists in the account list
-    #     is_in_account_list = self.client_socket.getUsername() in list_of_accounts
-    #     self.assertEqual(is_in_account_list, True)
-
-
 if __name__ == '__main__':
-    # set up the server once. This did not work, so you must run the run_server.py file separately.
-    # server_instance = Server()
-    # server_instance.server.bind((set_host, set_port))
-    # server_instance.server.listen()
-    # #conn, addr = server_instance.server.accept()
+    # run unit tests
     unittest.main()

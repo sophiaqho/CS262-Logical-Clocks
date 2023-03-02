@@ -41,6 +41,10 @@ class ClientSocket:
     def getMessages(self):
         return self.messages
 
+    # clear inbox!
+    def emptyMessages(self):
+        self.messages = []
+
     # returns the first message in the message queue and removes it from the queue
     def getFirstMessage(self):
         if self.messages:
