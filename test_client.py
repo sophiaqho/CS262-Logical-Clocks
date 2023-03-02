@@ -133,6 +133,7 @@ class TestStringMethods(unittest.TestCase):
         # check that the function returns the correctly updated local logical clock
         self.assertEqual(expected_logical_clock, updated_logical_clock)
 
+
     # testing the function that updates a machines local logical clock on an INTERNAL event
     def test_update_logical_clock_internal(self):
         # get the value of the current local logical clock vector so we can test updating it
@@ -146,6 +147,7 @@ class TestStringMethods(unittest.TestCase):
 
         # check that the function returns the correctly updated local logical clock
         self.assertEqual(expected_logical_clock, updated_logical_clock)
+
 
     # testing the get first message function on empty message queue
     def test_get_first_message(self):
@@ -162,6 +164,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(expected_output, received_message_output)
         self.assertEqual(expected_queue_length, received_length)
 
+
     # testing the get first message function on empty message queue
     def test_get_first_message_empty(self):
         # set the message queue to be empty for this test
@@ -176,6 +179,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(expected_output, received_message_output)
         self.assertEqual(expected_queue_length, received_length)
 
+
     # testing the send clock messages function with an invalid username input
     def test_send_clock_messages_invalid_recipient(self):
         # create an invalid recipient username
@@ -189,7 +193,6 @@ class TestStringMethods(unittest.TestCase):
         # checks that the function correctly returns False
         self.assertEqual(send_clock_message_output, False)
 
-    # TODO add send message to valid username function (send message to itself)
 
     # testing the send clock messages function with a valid input username
     def test_send_clock_messages_valid_recipient(self):
@@ -203,6 +206,7 @@ class TestStringMethods(unittest.TestCase):
         # the send_clock_message should return True on a valid user
         # checks that the function correctly returns True
         self.assertEqual(send_clock_message_output, True)
+
 
     # testing the receive message function on empty queue
     def test_receive_empty_message(self):
@@ -233,6 +237,7 @@ class TestStringMethods(unittest.TestCase):
         # check that the function output matches the expected output
         self.assertEqual(expected_output, receive_message_output)
 
+
     # testing the receive message function on a queue with multiple messages
     def test_receive_first_message_multiple(self):
         # set the message queue to have two different dummy clocks for this test
@@ -250,6 +255,7 @@ class TestStringMethods(unittest.TestCase):
 
         # check that the function output matches the expected output
         self.assertEqual(expected_output, receive_message_output)
+
 
     # testing the log events function
     def test_log_internal_event(self):
