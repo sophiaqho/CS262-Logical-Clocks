@@ -2,10 +2,10 @@ import os
 import socket
 import math
 import time
-import uuid
 from _thread import *
 import threading
 from client import ClientSocket
+import sys
 
 set_port = 8888
 set_host = ''
@@ -70,7 +70,7 @@ class Server:
         else:
             message_did_not_work = "Message could not be delivered. Please try again."
             print(message_did_not_work)
-            conn.sendto(confirmation_message_sent.encode(), (host, port))
+            conn.sendto(message_did_not_work.encode(), (host, port))
             return False
 
 
@@ -154,10 +154,11 @@ class Server:
                 # to the server
                 # prevents the issue of one machine trying to send messages 
                 # to a machine that doesn't exist yet
-                while len(self.account_list) < 3:
-                    # make the server sleep for a time that is the LCM of 1 through 6 
-                    # because we can carry out 1 through 6 opertions per second
-                    time.sleep(1/10)
+                if not_testing: 
+                    while len(self.account_list) < 3:
+                        # make the server sleep for a time that is the LCM of 1 through 6 
+                        # because we can carry out 1 through 6 opertions per second
+                        time.sleep(1/10)
 
             # check if client request to send a message
             elif data.lower().strip()[:7] == 'sendmsg':
@@ -169,7 +170,6 @@ class Server:
             # check if client request is to get available messages
             elif data[:8] == "msgspls!":
                 self.send_client_messages(curr_user, host, port, conn)
-
 
 
     # this program sets up the server + creates new threads for clients      
@@ -193,4 +193,5 @@ class Server:
 # create a server object and run the server program!
 if __name__ == '__main__':
     a = Server()
+    not_testing = (len(sys.argv) == 1)
     a.server_program()
