@@ -1,0 +1,441 @@
+2023-03-01:21:46:02,852, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [0, 0, 0]
+2023-03-01:21:46:02,852, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [1, 0, 0]
+2023-03-01:21:46:03,020, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [1, 0, 0]
+2023-03-01:21:46:03,020, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [2, 0, 0]
+2023-03-01:21:46:03,192, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [2, 0, 0]
+2023-03-01:21:46:03,193, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [3, 0, 0]
+2023-03-01:21:46:03,361, ACTION: INTERNAL, Logical Clock Time: [4, 0, 0]
+2023-03-01:21:46:03,531, ACTION: INTERNAL, Logical Clock Time: [5, 0, 0]
+2023-03-01:21:46:03,704, ACTION: INTERNAL, Logical Clock Time: [6, 0, 0]
+2023-03-01:21:46:03,875, ACTION: INTERNAL, Logical Clock Time: [7, 0, 0]
+2023-03-01:21:46:04,047, ACTION: INTERNAL, Logical Clock Time: [8, 0, 0]
+2023-03-01:21:46:04,220, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [8, 0, 0]
+2023-03-01:21:46:04,221, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [9, 0, 0]
+2023-03-01:21:46:04,392, ACTION: INTERNAL, Logical Clock Time: [10, 0, 0]
+2023-03-01:21:46:04,565, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [11, 0, 0]
+2023-03-01:21:46:04,736, ACTION: INTERNAL, Logical Clock Time: [12, 0, 0]
+2023-03-01:21:46:04,909, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [13, 0, 0]
+2023-03-01:21:46:05,082, ACTION: INTERNAL, Logical Clock Time: [14, 0, 0]
+2023-03-01:21:46:05,254, ACTION: RECEIVE, Logical Clock Time: [15, 0, 14], # of remaining messages: 0
+2023-03-01:21:46:05,423, ACTION: INTERNAL, Logical Clock Time: [16, 0, 14]
+2023-03-01:21:46:05,591, ACTION: RECEIVE, Logical Clock Time: [17, 13, 14], # of remaining messages: 0
+2023-03-01:21:46:05,764, ACTION: RECEIVE, Logical Clock Time: [18, 14, 14], # of remaining messages: 0
+2023-03-01:21:46:05,935, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [19, 14, 14]
+2023-03-01:21:46:06,103, ACTION: INTERNAL, Logical Clock Time: [20, 14, 14]
+2023-03-01:21:46:06,272, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [21, 14, 14]
+2023-03-01:21:46:06,443, ACTION: INTERNAL, Logical Clock Time: [22, 14, 14]
+2023-03-01:21:46:06,610, ACTION: INTERNAL, Logical Clock Time: [23, 14, 14]
+2023-03-01:21:46:06,781, ACTION: RECEIVE, Logical Clock Time: [24, 19, 14], # of remaining messages: 0
+2023-03-01:21:46:06,953, ACTION: RECEIVE, Logical Clock Time: [25, 19, 24], # of remaining messages: 0
+2023-03-01:21:46:07,121, ACTION: INTERNAL, Logical Clock Time: [26, 19, 24]
+2023-03-01:21:46:07,292, ACTION: RECEIVE, Logical Clock Time: [27, 21, 24], # of remaining messages: 0
+2023-03-01:21:46:07,461, ACTION: RECEIVE, Logical Clock Time: [28, 22, 24], # of remaining messages: 0
+2023-03-01:21:46:07,634, ACTION: RECEIVE, Logical Clock Time: [29, 23, 24], # of remaining messages: 0
+2023-03-01:21:46:07,803, ACTION: RECEIVE, Logical Clock Time: [30, 24, 24], # of remaining messages: 0
+2023-03-01:21:46:07,975, ACTION: INTERNAL, Logical Clock Time: [31, 24, 24]
+2023-03-01:21:46:08,144, ACTION: INTERNAL, Logical Clock Time: [32, 24, 24]
+2023-03-01:21:46:08,318, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [33, 24, 24]
+2023-03-01:21:46:08,490, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [34, 24, 24]
+2023-03-01:21:46:08,661, ACTION: RECEIVE, Logical Clock Time: [35, 25, 34], # of remaining messages: 0
+2023-03-01:21:46:08,833, ACTION: RECEIVE, Logical Clock Time: [36, 25, 35], # of remaining messages: 0
+2023-03-01:21:46:09,005, ACTION: INTERNAL, Logical Clock Time: [37, 25, 35]
+2023-03-01:21:46:09,174, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [37, 25, 35]
+2023-03-01:21:46:09,174, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [38, 25, 35]
+2023-03-01:21:46:09,345, ACTION: INTERNAL, Logical Clock Time: [39, 25, 35]
+2023-03-01:21:46:09,516, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [40, 25, 35]
+2023-03-01:21:46:09,689, ACTION: INTERNAL, Logical Clock Time: [41, 25, 35]
+2023-03-01:21:46:09,860, ACTION: RECEIVE, Logical Clock Time: [42, 34, 35], # of remaining messages: 1
+2023-03-01:21:46:10,028, ACTION: RECEIVE, Logical Clock Time: [43, 34, 41], # of remaining messages: 0
+2023-03-01:21:46:10,197, ACTION: INTERNAL, Logical Clock Time: [44, 34, 41]
+2023-03-01:21:46:10,366, ACTION: INTERNAL, Logical Clock Time: [45, 34, 41]
+2023-03-01:21:46:10,538, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [46, 34, 41]
+2023-03-01:21:46:10,705, ACTION: INTERNAL, Logical Clock Time: [47, 34, 41]
+2023-03-01:21:46:10,877, ACTION: INTERNAL, Logical Clock Time: [48, 34, 41]
+2023-03-01:21:46:11,046, ACTION: INTERNAL, Logical Clock Time: [49, 34, 41]
+2023-03-01:21:46:11,216, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [50, 34, 41]
+2023-03-01:21:46:11,389, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [51, 34, 41]
+2023-03-01:21:46:11,557, ACTION: INTERNAL, Logical Clock Time: [52, 34, 41]
+2023-03-01:21:46:11,728, ACTION: INTERNAL, Logical Clock Time: [53, 34, 41]
+2023-03-01:21:46:11,898, ACTION: INTERNAL, Logical Clock Time: [54, 34, 41]
+2023-03-01:21:46:12,070, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [55, 34, 41]
+2023-03-01:21:46:12,241, ACTION: INTERNAL, Logical Clock Time: [56, 34, 41]
+2023-03-01:21:46:12,413, ACTION: RECEIVE, Logical Clock Time: [57, 41, 55], # of remaining messages: 0
+2023-03-01:21:46:12,581, ACTION: RECEIVE, Logical Clock Time: [58, 41, 56], # of remaining messages: 0
+2023-03-01:21:46:12,750, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [58, 41, 56]
+2023-03-01:21:46:12,750, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [59, 41, 56]
+2023-03-01:21:46:12,922, ACTION: INTERNAL, Logical Clock Time: [60, 41, 56]
+2023-03-01:21:46:13,093, ACTION: RECEIVE, Logical Clock Time: [61, 41, 59], # of remaining messages: 0
+2023-03-01:21:46:13,264, ACTION: INTERNAL, Logical Clock Time: [62, 41, 59]
+2023-03-01:21:46:13,435, ACTION: RECEIVE, Logical Clock Time: [63, 41, 61], # of remaining messages: 0
+2023-03-01:21:46:13,605, ACTION: INTERNAL, Logical Clock Time: [64, 41, 61]
+2023-03-01:21:46:13,772, ACTION: INTERNAL, Logical Clock Time: [65, 41, 61]
+2023-03-01:21:46:13,944, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [65, 41, 61]
+2023-03-01:21:46:13,944, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [66, 41, 61]
+2023-03-01:21:46:14,113, ACTION: INTERNAL, Logical Clock Time: [67, 41, 61]
+2023-03-01:21:46:14,282, ACTION: INTERNAL, Logical Clock Time: [68, 41, 61]
+2023-03-01:21:46:14,451, ACTION: RECEIVE, Logical Clock Time: [69, 56, 61], # of remaining messages: 0
+2023-03-01:21:46:14,620, ACTION: INTERNAL, Logical Clock Time: [70, 56, 61]
+2023-03-01:21:46:14,791, ACTION: INTERNAL, Logical Clock Time: [71, 56, 61]
+2023-03-01:21:46:14,960, ACTION: INTERNAL, Logical Clock Time: [72, 56, 61]
+2023-03-01:21:46:15,128, ACTION: INTERNAL, Logical Clock Time: [73, 56, 61]
+2023-03-01:21:46:15,295, ACTION: INTERNAL, Logical Clock Time: [74, 56, 61]
+2023-03-01:21:46:15,465, ACTION: RECEIVE, Logical Clock Time: [75, 61, 61], # of remaining messages: 0
+2023-03-01:21:46:15,636, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [75, 61, 61]
+2023-03-01:21:46:15,637, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [76, 61, 61]
+2023-03-01:21:46:15,807, ACTION: INTERNAL, Logical Clock Time: [77, 61, 61]
+2023-03-01:21:46:15,977, ACTION: INTERNAL, Logical Clock Time: [78, 61, 61]
+2023-03-01:21:46:16,145, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [79, 61, 61]
+2023-03-01:21:46:16,317, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [79, 61, 61]
+2023-03-01:21:46:16,318, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [80, 61, 61]
+2023-03-01:21:46:16,485, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [81, 61, 61]
+2023-03-01:21:46:16,655, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [82, 61, 61]
+2023-03-01:21:46:16,826, ACTION: INTERNAL, Logical Clock Time: [83, 61, 61]
+2023-03-01:21:46:16,996, ACTION: INTERNAL, Logical Clock Time: [84, 61, 61]
+2023-03-01:21:46:17,164, ACTION: INTERNAL, Logical Clock Time: [85, 61, 61]
+2023-03-01:21:46:17,332, ACTION: RECEIVE, Logical Clock Time: [86, 61, 84], # of remaining messages: 0
+2023-03-01:21:46:17,501, ACTION: INTERNAL, Logical Clock Time: [87, 61, 84]
+2023-03-01:21:46:17,668, ACTION: INTERNAL, Logical Clock Time: [88, 61, 84]
+2023-03-01:21:46:17,839, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [88, 61, 84]
+2023-03-01:21:46:17,839, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [89, 61, 84]
+2023-03-01:21:46:18,009, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [89, 61, 84]
+2023-03-01:21:46:18,009, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [90, 61, 84]
+2023-03-01:21:46:18,177, ACTION: INTERNAL, Logical Clock Time: [91, 61, 84]
+2023-03-01:21:46:18,349, ACTION: INTERNAL, Logical Clock Time: [92, 61, 84]
+2023-03-01:21:46:18,518, ACTION: RECEIVE, Logical Clock Time: [93, 61, 92], # of remaining messages: 0
+2023-03-01:21:46:18,689, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [93, 61, 92]
+2023-03-01:21:46:18,689, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [94, 61, 92]
+2023-03-01:21:46:18,859, ACTION: INTERNAL, Logical Clock Time: [95, 61, 92]
+2023-03-01:21:46:19,026, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [96, 61, 92]
+2023-03-01:21:46:19,265, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [97, 61, 92]
+2023-03-01:21:46:19,463, ACTION: INTERNAL, Logical Clock Time: [98, 61, 92]
+2023-03-01:21:46:19,631, ACTION: INTERNAL, Logical Clock Time: [99, 61, 92]
+2023-03-01:21:46:19,799, ACTION: RECEIVE, Logical Clock Time: [100, 61, 98], # of remaining messages: 0
+2023-03-01:21:46:19,971, ACTION: INTERNAL, Logical Clock Time: [101, 61, 98]
+2023-03-01:21:46:20,139, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [101, 61, 98]
+2023-03-01:21:46:20,139, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [102, 61, 98]
+2023-03-01:21:46:20,307, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [103, 61, 98]
+2023-03-01:21:46:20,477, ACTION: INTERNAL, Logical Clock Time: [104, 61, 98]
+2023-03-01:21:46:20,646, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [104, 61, 98]
+2023-03-01:21:46:20,646, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [105, 61, 98]
+2023-03-01:21:46:20,816, ACTION: INTERNAL, Logical Clock Time: [106, 61, 98]
+2023-03-01:21:46:20,988, ACTION: INTERNAL, Logical Clock Time: [107, 61, 98]
+2023-03-01:21:46:21,155, ACTION: RECEIVE, Logical Clock Time: [108, 61, 106], # of remaining messages: 0
+2023-03-01:21:46:21,323, ACTION: INTERNAL, Logical Clock Time: [109, 61, 106]
+2023-03-01:21:46:21,490, ACTION: INTERNAL, Logical Clock Time: [110, 61, 106]
+2023-03-01:21:46:21,658, ACTION: INTERNAL, Logical Clock Time: [111, 61, 106]
+2023-03-01:21:46:21,827, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [112, 61, 106]
+2023-03-01:21:46:21,997, ACTION: INTERNAL, Logical Clock Time: [113, 61, 106]
+2023-03-01:21:46:22,165, ACTION: INTERNAL, Logical Clock Time: [114, 61, 106]
+2023-03-01:21:46:22,332, ACTION: INTERNAL, Logical Clock Time: [115, 61, 106]
+2023-03-01:21:46:22,501, ACTION: RECEIVE, Logical Clock Time: [116, 95, 107], # of remaining messages: 0
+2023-03-01:21:46:22,673, ACTION: RECEIVE, Logical Clock Time: [117, 96, 107], # of remaining messages: 0
+2023-03-01:21:46:22,840, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [117, 96, 107]
+2023-03-01:21:46:22,840, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [118, 96, 107]
+2023-03-01:21:46:23,010, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [118, 96, 107]
+2023-03-01:21:46:23,011, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [119, 96, 107]
+2023-03-01:21:46:23,228, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [119, 96, 107]
+2023-03-01:21:46:23,229, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [120, 96, 107]
+2023-03-01:21:46:23,397, ACTION: INTERNAL, Logical Clock Time: [121, 96, 107]
+2023-03-01:21:46:23,570, ACTION: RECEIVE, Logical Clock Time: [122, 100, 107], # of remaining messages: 0
+2023-03-01:21:46:23,738, ACTION: INTERNAL, Logical Clock Time: [123, 100, 107]
+2023-03-01:21:46:23,909, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [123, 100, 107]
+2023-03-01:21:46:23,909, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [124, 100, 107]
+2023-03-01:21:46:24,078, ACTION: INTERNAL, Logical Clock Time: [125, 100, 107]
+2023-03-01:21:46:24,246, ACTION: INTERNAL, Logical Clock Time: [126, 100, 107]
+2023-03-01:21:46:24,417, ACTION: INTERNAL, Logical Clock Time: [127, 100, 107]
+2023-03-01:21:46:24,587, ACTION: INTERNAL, Logical Clock Time: [128, 100, 107]
+2023-03-01:21:46:24,755, ACTION: RECEIVE, Logical Clock Time: [129, 106, 125], # of remaining messages: 0
+2023-03-01:21:46:24,925, ACTION: RECEIVE, Logical Clock Time: [130, 107, 125], # of remaining messages: 0
+2023-03-01:21:46:25,093, ACTION: RECEIVE, Logical Clock Time: [131, 108, 125], # of remaining messages: 0
+2023-03-01:21:46:25,263, ACTION: RECEIVE, Logical Clock Time: [132, 108, 130], # of remaining messages: 0
+2023-03-01:21:46:25,432, ACTION: RECEIVE, Logical Clock Time: [133, 108, 131], # of remaining messages: 0
+2023-03-01:21:46:25,600, ACTION: RECEIVE, Logical Clock Time: [134, 108, 132], # of remaining messages: 0
+2023-03-01:21:46:25,772, ACTION: INTERNAL, Logical Clock Time: [135, 108, 132]
+2023-03-01:21:46:25,939, ACTION: INTERNAL, Logical Clock Time: [136, 108, 132]
+2023-03-01:21:46:26,108, ACTION: RECEIVE, Logical Clock Time: [137, 108, 135], # of remaining messages: 0
+2023-03-01:21:46:26,281, ACTION: INTERNAL, Logical Clock Time: [138, 108, 135]
+2023-03-01:21:46:26,449, ACTION: INTERNAL, Logical Clock Time: [139, 108, 135]
+2023-03-01:21:46:26,618, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [140, 108, 135]
+2023-03-01:21:46:26,788, ACTION: INTERNAL, Logical Clock Time: [141, 108, 135]
+2023-03-01:21:46:26,957, ACTION: INTERNAL, Logical Clock Time: [142, 108, 135]
+2023-03-01:21:46:27,126, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [143, 108, 135]
+2023-03-01:21:46:27,298, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [144, 108, 135]
+2023-03-01:21:46:27,467, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [145, 108, 135]
+2023-03-01:21:46:27,638, ACTION: RECEIVE, Logical Clock Time: [146, 117, 144], # of remaining messages: 0
+2023-03-01:21:46:27,806, ACTION: RECEIVE, Logical Clock Time: [147, 121, 144], # of remaining messages: 0
+2023-03-01:21:46:27,974, ACTION: INTERNAL, Logical Clock Time: [148, 121, 144]
+2023-03-01:21:46:28,141, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [149, 121, 144]
+2023-03-01:21:46:28,313, ACTION: INTERNAL, Logical Clock Time: [150, 121, 144]
+2023-03-01:21:46:28,483, ACTION: INTERNAL, Logical Clock Time: [151, 121, 144]
+2023-03-01:21:46:28,654, ACTION: RECEIVE, Logical Clock Time: [152, 125, 144], # of remaining messages: 0
+2023-03-01:21:46:28,822, ACTION: INTERNAL, Logical Clock Time: [153, 125, 144]
+2023-03-01:21:46:28,989, ACTION: RECEIVE, Logical Clock Time: [154, 127, 144], # of remaining messages: 0
+2023-03-01:21:46:29,156, ACTION: RECEIVE, Logical Clock Time: [155, 128, 144], # of remaining messages: 0
+2023-03-01:21:46:29,324, ACTION: INTERNAL, Logical Clock Time: [156, 128, 144]
+2023-03-01:21:46:29,505, ACTION: INTERNAL, Logical Clock Time: [157, 128, 144]
+2023-03-01:21:46:29,688, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [157, 128, 144]
+2023-03-01:21:46:29,689, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [158, 128, 144]
+2023-03-01:21:46:29,860, ACTION: INTERNAL, Logical Clock Time: [159, 128, 144]
+2023-03-01:21:46:30,028, ACTION: RECEIVE, Logical Clock Time: [160, 132, 144], # of remaining messages: 0
+2023-03-01:21:46:30,198, ACTION: INTERNAL, Logical Clock Time: [161, 132, 144]
+2023-03-01:21:46:30,370, ACTION: INTERNAL, Logical Clock Time: [162, 132, 144]
+2023-03-01:21:46:30,539, ACTION: INTERNAL, Logical Clock Time: [163, 132, 144]
+2023-03-01:21:46:30,712, ACTION: RECEIVE, Logical Clock Time: [164, 135, 144], # of remaining messages: 0
+2023-03-01:21:46:30,880, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [165, 135, 144]
+2023-03-01:21:46:31,048, ACTION: RECEIVE, Logical Clock Time: [166, 135, 164], # of remaining messages: 0
+2023-03-01:21:46:31,215, ACTION: INTERNAL, Logical Clock Time: [167, 135, 164]
+2023-03-01:21:46:31,388, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [167, 135, 164]
+2023-03-01:21:46:31,388, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [168, 135, 164]
+2023-03-01:21:46:31,555, ACTION: INTERNAL, Logical Clock Time: [169, 135, 164]
+2023-03-01:21:46:31,726, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [170, 135, 164]
+2023-03-01:21:46:31,894, ACTION: RECEIVE, Logical Clock Time: [171, 135, 169], # of remaining messages: 0
+2023-03-01:21:46:32,061, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [172, 135, 169]
+2023-03-01:21:46:32,247, ACTION: INTERNAL, Logical Clock Time: [173, 135, 169]
+2023-03-01:21:46:32,418, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [173, 135, 169]
+2023-03-01:21:46:32,418, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [174, 135, 169]
+2023-03-01:21:46:32,588, ACTION: INTERNAL, Logical Clock Time: [175, 135, 169]
+2023-03-01:21:46:32,755, ACTION: RECEIVE, Logical Clock Time: [176, 145, 169], # of remaining messages: 0
+2023-03-01:21:46:32,927, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [177, 145, 169]
+2023-03-01:21:46:33,096, ACTION: INTERNAL, Logical Clock Time: [178, 145, 169]
+2023-03-01:21:46:33,268, ACTION: INTERNAL, Logical Clock Time: [179, 145, 169]
+2023-03-01:21:46:33,438, ACTION: INTERNAL, Logical Clock Time: [180, 145, 169]
+2023-03-01:21:46:33,608, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [180, 145, 169]
+2023-03-01:21:46:33,608, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [181, 145, 169]
+2023-03-01:21:46:33,778, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [181, 145, 169]
+2023-03-01:21:46:33,778, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [182, 145, 169]
+2023-03-01:21:46:33,947, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [183, 145, 169]
+2023-03-01:21:46:34,119, ACTION: INTERNAL, Logical Clock Time: [184, 145, 169]
+2023-03-01:21:46:34,287, ACTION: INTERNAL, Logical Clock Time: [185, 145, 169]
+2023-03-01:21:46:34,455, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [186, 145, 169]
+2023-03-01:21:46:34,627, ACTION: INTERNAL, Logical Clock Time: [187, 145, 169]
+2023-03-01:21:46:34,797, ACTION: RECEIVE, Logical Clock Time: [188, 145, 187], # of remaining messages: 0
+2023-03-01:21:46:34,970, ACTION: RECEIVE, Logical Clock Time: [189, 156, 187], # of remaining messages: 0
+2023-03-01:21:46:35,151, ACTION: INTERNAL, Logical Clock Time: [190, 156, 187]
+2023-03-01:21:46:35,321, ACTION: INTERNAL, Logical Clock Time: [191, 156, 187]
+2023-03-01:21:46:35,494, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [191, 156, 187]
+2023-03-01:21:46:35,494, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [192, 156, 187]
+2023-03-01:21:46:35,666, ACTION: INTERNAL, Logical Clock Time: [193, 156, 187]
+2023-03-01:21:46:35,839, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [194, 156, 187]
+2023-03-01:21:46:36,006, ACTION: INTERNAL, Logical Clock Time: [195, 156, 187]
+2023-03-01:21:46:36,174, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [195, 156, 187]
+2023-03-01:21:46:36,175, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [196, 156, 187]
+2023-03-01:21:46:36,345, ACTION: INTERNAL, Logical Clock Time: [197, 156, 187]
+2023-03-01:21:46:36,516, ACTION: RECEIVE, Logical Clock Time: [198, 157, 197], # of remaining messages: 0
+2023-03-01:21:46:36,688, ACTION: INTERNAL, Logical Clock Time: [199, 157, 197]
+2023-03-01:21:46:36,864, ACTION: RECEIVE, Logical Clock Time: [200, 165, 197], # of remaining messages: 0
+2023-03-01:21:46:37,034, ACTION: RECEIVE, Logical Clock Time: [201, 165, 200], # of remaining messages: 0
+2023-03-01:21:46:37,205, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [202, 165, 200]
+2023-03-01:21:46:37,376, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [203, 165, 200]
+2023-03-01:21:46:37,546, ACTION: INTERNAL, Logical Clock Time: [204, 165, 200]
+2023-03-01:21:46:37,719, ACTION: INTERNAL, Logical Clock Time: [205, 165, 200]
+2023-03-01:21:46:37,888, ACTION: INTERNAL, Logical Clock Time: [206, 165, 200]
+2023-03-01:21:46:38,058, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [207, 165, 200]
+2023-03-01:21:46:38,229, ACTION: INTERNAL, Logical Clock Time: [208, 165, 200]
+2023-03-01:21:46:38,397, ACTION: RECEIVE, Logical Clock Time: [209, 173, 200], # of remaining messages: 0
+2023-03-01:21:46:38,570, ACTION: INTERNAL, Logical Clock Time: [210, 173, 200]
+2023-03-01:21:46:38,739, ACTION: INTERNAL, Logical Clock Time: [211, 173, 200]
+2023-03-01:21:46:38,912, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [211, 173, 200]
+2023-03-01:21:46:38,912, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [212, 173, 200]
+2023-03-01:21:46:39,082, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [213, 173, 200]
+2023-03-01:21:46:39,254, ACTION: RECEIVE, Logical Clock Time: [214, 177, 200], # of remaining messages: 0
+2023-03-01:21:46:39,424, ACTION: INTERNAL, Logical Clock Time: [215, 177, 200]
+2023-03-01:21:46:39,596, ACTION: RECEIVE, Logical Clock Time: [216, 179, 200], # of remaining messages: 0
+2023-03-01:21:46:39,764, ACTION: RECEIVE, Logical Clock Time: [217, 179, 216], # of remaining messages: 0
+2023-03-01:21:46:39,932, ACTION: RECEIVE, Logical Clock Time: [218, 179, 217], # of remaining messages: 0
+2023-03-01:21:46:40,105, ACTION: INTERNAL, Logical Clock Time: [219, 179, 217]
+2023-03-01:21:46:40,277, ACTION: INTERNAL, Logical Clock Time: [220, 179, 217]
+2023-03-01:21:46:40,449, ACTION: INTERNAL, Logical Clock Time: [221, 179, 217]
+2023-03-01:21:46:40,619, ACTION: INTERNAL, Logical Clock Time: [222, 179, 217]
+2023-03-01:21:46:40,791, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [223, 179, 217]
+2023-03-01:21:46:40,964, ACTION: INTERNAL, Logical Clock Time: [224, 179, 217]
+2023-03-01:21:46:41,133, ACTION: INTERNAL, Logical Clock Time: [225, 179, 217]
+2023-03-01:21:46:41,305, ACTION: INTERNAL, Logical Clock Time: [226, 179, 217]
+2023-03-01:21:46:41,476, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [227, 179, 217]
+2023-03-01:21:46:41,647, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [228, 179, 217]
+2023-03-01:21:46:41,817, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [229, 179, 217]
+2023-03-01:21:46:41,989, ACTION: INTERNAL, Logical Clock Time: [230, 179, 217]
+2023-03-01:21:46:42,158, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [231, 179, 217]
+2023-03-01:21:46:42,330, ACTION: INTERNAL, Logical Clock Time: [232, 179, 217]
+2023-03-01:21:46:42,499, ACTION: INTERNAL, Logical Clock Time: [233, 179, 217]
+2023-03-01:21:46:42,670, ACTION: INTERNAL, Logical Clock Time: [234, 179, 217]
+2023-03-01:21:46:42,839, ACTION: INTERNAL, Logical Clock Time: [235, 179, 217]
+2023-03-01:21:46:43,011, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [235, 179, 217]
+2023-03-01:21:46:43,012, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [236, 179, 217]
+2023-03-01:21:46:43,183, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [237, 179, 217]
+2023-03-01:21:46:43,355, ACTION: INTERNAL, Logical Clock Time: [238, 179, 217]
+2023-03-01:21:46:43,524, ACTION: INTERNAL, Logical Clock Time: [239, 179, 217]
+2023-03-01:21:46:43,693, ACTION: INTERNAL, Logical Clock Time: [240, 179, 217]
+2023-03-01:21:46:43,864, ACTION: INTERNAL, Logical Clock Time: [241, 179, 217]
+2023-03-01:21:46:44,034, ACTION: INTERNAL, Logical Clock Time: [242, 179, 217]
+2023-03-01:21:46:44,204, ACTION: INTERNAL, Logical Clock Time: [243, 179, 217]
+2023-03-01:21:46:44,373, ACTION: RECEIVE, Logical Clock Time: [244, 202, 231], # of remaining messages: 0
+2023-03-01:21:46:44,542, ACTION: INTERNAL, Logical Clock Time: [245, 202, 231]
+2023-03-01:21:46:44,710, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [245, 202, 231]
+2023-03-01:21:46:44,711, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [246, 202, 231]
+2023-03-01:21:46:44,879, ACTION: INTERNAL, Logical Clock Time: [247, 202, 231]
+2023-03-01:21:46:45,052, ACTION: RECEIVE, Logical Clock Time: [248, 204, 247], # of remaining messages: 0
+2023-03-01:21:46:45,222, ACTION: INTERNAL, Logical Clock Time: [249, 204, 247]
+2023-03-01:21:46:45,400, ACTION: INTERNAL, Logical Clock Time: [250, 204, 247]
+2023-03-01:21:46:45,571, ACTION: RECEIVE, Logical Clock Time: [251, 204, 250], # of remaining messages: 0
+2023-03-01:21:46:45,742, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [252, 204, 250]
+2023-03-01:21:46:45,911, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [253, 204, 250]
+2023-03-01:21:46:46,081, ACTION: INTERNAL, Logical Clock Time: [254, 204, 250]
+2023-03-01:21:46:46,253, ACTION: RECEIVE, Logical Clock Time: [255, 210, 254], # of remaining messages: 0
+2023-03-01:21:46:46,439, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [256, 210, 254]
+2023-03-01:21:46:46,607, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [256, 210, 254]
+2023-03-01:21:46:46,608, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [257, 210, 254]
+2023-03-01:21:46:46,781, ACTION: INTERNAL, Logical Clock Time: [258, 210, 254]
+2023-03-01:21:46:46,948, ACTION: RECEIVE, Logical Clock Time: [259, 210, 258], # of remaining messages: 0
+2023-03-01:21:46:47,118, ACTION: INTERNAL, Logical Clock Time: [260, 210, 258]
+2023-03-01:21:46:47,288, ACTION: INTERNAL, Logical Clock Time: [261, 210, 258]
+2023-03-01:21:46:47,456, ACTION: INTERNAL, Logical Clock Time: [262, 210, 258]
+2023-03-01:21:46:47,625, ACTION: INTERNAL, Logical Clock Time: [263, 210, 258]
+2023-03-01:21:46:47,793, ACTION: INTERNAL, Logical Clock Time: [264, 210, 258]
+2023-03-01:21:46:47,964, ACTION: INTERNAL, Logical Clock Time: [265, 210, 258]
+2023-03-01:21:46:48,135, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [266, 210, 258]
+2023-03-01:21:46:48,307, ACTION: INTERNAL, Logical Clock Time: [267, 210, 258]
+2023-03-01:21:46:48,475, ACTION: INTERNAL, Logical Clock Time: [268, 210, 258]
+2023-03-01:21:46:48,644, ACTION: RECEIVE, Logical Clock Time: [269, 220, 268], # of remaining messages: 0
+2023-03-01:21:46:48,813, ACTION: INTERNAL, Logical Clock Time: [270, 220, 268]
+2023-03-01:21:46:48,981, ACTION: INTERNAL, Logical Clock Time: [271, 220, 268]
+2023-03-01:21:46:49,154, ACTION: INTERNAL, Logical Clock Time: [272, 220, 268]
+2023-03-01:21:46:49,326, ACTION: INTERNAL, Logical Clock Time: [273, 220, 268]
+2023-03-01:21:46:49,496, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [273, 220, 268]
+2023-03-01:21:46:49,497, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [274, 220, 268]
+2023-03-01:21:46:49,669, ACTION: INTERNAL, Logical Clock Time: [275, 220, 268]
+2023-03-01:21:46:49,839, ACTION: INTERNAL, Logical Clock Time: [276, 220, 268]
+2023-03-01:21:46:50,008, ACTION: INTERNAL, Logical Clock Time: [277, 220, 268]
+2023-03-01:21:46:50,177, ACTION: INTERNAL, Logical Clock Time: [278, 220, 268]
+2023-03-01:21:46:50,350, ACTION: INTERNAL, Logical Clock Time: [279, 220, 268]
+2023-03-01:21:46:50,521, ACTION: INTERNAL, Logical Clock Time: [280, 220, 268]
+2023-03-01:21:46:50,693, ACTION: RECEIVE, Logical Clock Time: [281, 220, 280], # of remaining messages: 0
+2023-03-01:21:46:50,861, ACTION: INTERNAL, Logical Clock Time: [282, 220, 280]
+2023-03-01:21:46:51,029, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [283, 220, 280]
+2023-03-01:21:46:51,202, ACTION: INTERNAL, Logical Clock Time: [284, 220, 280]
+2023-03-01:21:46:51,372, ACTION: INTERNAL, Logical Clock Time: [285, 220, 280]
+2023-03-01:21:46:51,539, ACTION: INTERNAL, Logical Clock Time: [286, 220, 280]
+2023-03-01:21:46:51,712, ACTION: INTERNAL, Logical Clock Time: [287, 220, 280]
+2023-03-01:21:46:51,881, ACTION: INTERNAL, Logical Clock Time: [288, 220, 280]
+2023-03-01:21:46:52,050, ACTION: RECEIVE, Logical Clock Time: [289, 220, 288], # of remaining messages: 0
+2023-03-01:21:46:52,222, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [289, 220, 288]
+2023-03-01:21:46:52,223, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [290, 220, 288]
+2023-03-01:21:46:52,396, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [291, 220, 288]
+2023-03-01:21:46:52,567, ACTION: INTERNAL, Logical Clock Time: [292, 220, 288]
+2023-03-01:21:46:52,738, ACTION: RECEIVE, Logical Clock Time: [293, 220, 292], # of remaining messages: 0
+2023-03-01:21:46:52,906, ACTION: RECEIVE, Logical Clock Time: [294, 220, 293], # of remaining messages: 0
+2023-03-01:21:46:53,077, ACTION: INTERNAL, Logical Clock Time: [295, 220, 293]
+2023-03-01:21:46:53,250, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [296, 220, 293]
+2023-03-01:21:46:53,422, ACTION: RECEIVE, Logical Clock Time: [297, 246, 296], # of remaining messages: 0
+2023-03-01:21:46:53,594, ACTION: RECEIVE, Logical Clock Time: [298, 246, 297], # of remaining messages: 0
+2023-03-01:21:46:53,764, ACTION: INTERNAL, Logical Clock Time: [299, 246, 297]
+2023-03-01:21:46:53,935, ACTION: INTERNAL, Logical Clock Time: [300, 246, 297]
+2023-03-01:21:46:54,105, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [300, 246, 297]
+2023-03-01:21:46:54,106, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [301, 246, 297]
+2023-03-01:21:46:54,278, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [302, 246, 297]
+2023-03-01:21:46:54,450, ACTION: INTERNAL, Logical Clock Time: [303, 246, 297]
+2023-03-01:21:46:54,620, ACTION: INTERNAL, Logical Clock Time: [304, 246, 297]
+2023-03-01:21:46:54,792, ACTION: RECEIVE, Logical Clock Time: [305, 249, 304], # of remaining messages: 0
+2023-03-01:21:46:54,965, ACTION: INTERNAL, Logical Clock Time: [306, 249, 304]
+2023-03-01:21:46:55,133, ACTION: INTERNAL, Logical Clock Time: [307, 249, 304]
+2023-03-01:21:46:55,301, ACTION: RECEIVE, Logical Clock Time: [308, 249, 307], # of remaining messages: 0
+2023-03-01:21:46:55,472, ACTION: INTERNAL, Logical Clock Time: [309, 249, 307]
+2023-03-01:21:46:55,640, ACTION: INTERNAL, Logical Clock Time: [310, 249, 307]
+2023-03-01:21:46:55,810, ACTION: RECEIVE, Logical Clock Time: [311, 258, 307], # of remaining messages: 0
+2023-03-01:21:46:55,981, ACTION: RECEIVE, Logical Clock Time: [312, 258, 311], # of remaining messages: 0
+2023-03-01:21:46:56,149, ACTION: INTERNAL, Logical Clock Time: [313, 258, 311]
+2023-03-01:21:46:56,322, ACTION: RECEIVE, Logical Clock Time: [314, 258, 313], # of remaining messages: 0
+2023-03-01:21:46:56,493, ACTION: INTERNAL, Logical Clock Time: [315, 258, 313]
+2023-03-01:21:46:56,660, ACTION: RECEIVE, Logical Clock Time: [316, 258, 315], # of remaining messages: 0
+2023-03-01:21:46:56,828, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [316, 258, 315]
+2023-03-01:21:46:56,828, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [317, 258, 315]
+2023-03-01:21:46:57,012, ACTION: INTERNAL, Logical Clock Time: [318, 258, 315]
+2023-03-01:21:46:57,182, ACTION: INTERNAL, Logical Clock Time: [319, 258, 315]
+2023-03-01:21:46:57,350, ACTION: RECEIVE, Logical Clock Time: [320, 258, 319], # of remaining messages: 0
+2023-03-01:21:46:57,521, ACTION: INTERNAL, Logical Clock Time: [321, 258, 319]
+2023-03-01:21:46:57,692, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [322, 258, 319]
+2023-03-01:21:46:57,860, ACTION: RECEIVE, Logical Clock Time: [323, 258, 322], # of remaining messages: 0
+2023-03-01:21:46:58,029, ACTION: RECEIVE, Logical Clock Time: [324, 258, 323], # of remaining messages: 0
+2023-03-01:21:46:58,197, ACTION: RECEIVE, Logical Clock Time: [325, 258, 324], # of remaining messages: 0
+2023-03-01:21:46:58,369, ACTION: INTERNAL, Logical Clock Time: [326, 258, 324]
+2023-03-01:21:46:58,537, ACTION: RECEIVE, Logical Clock Time: [327, 272, 324], # of remaining messages: 0
+2023-03-01:21:46:58,706, ACTION: RECEIVE, Logical Clock Time: [328, 273, 324], # of remaining messages: 0
+2023-03-01:21:46:58,879, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [329, 273, 324]
+2023-03-01:21:46:59,048, ACTION: INTERNAL, Logical Clock Time: [330, 273, 324]
+2023-03-01:21:46:59,219, ACTION: RECEIVE, Logical Clock Time: [331, 275, 324], # of remaining messages: 0
+2023-03-01:21:46:59,388, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [332, 275, 324]
+2023-03-01:21:46:59,559, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [333, 275, 324]
+2023-03-01:21:46:59,728, ACTION: INTERNAL, Logical Clock Time: [334, 275, 324]
+2023-03-01:21:46:59,897, ACTION: INTERNAL, Logical Clock Time: [335, 275, 324]
+2023-03-01:21:47:00,069, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [336, 275, 324]
+2023-03-01:21:47:00,238, ACTION: INTERNAL, Logical Clock Time: [337, 275, 324]
+2023-03-01:21:47:00,405, ACTION: INTERNAL, Logical Clock Time: [338, 275, 324]
+2023-03-01:21:47:00,574, ACTION: RECEIVE, Logical Clock Time: [339, 275, 338], # of remaining messages: 0
+2023-03-01:21:47:00,746, ACTION: INTERNAL, Logical Clock Time: [340, 275, 338]
+2023-03-01:21:47:00,919, ACTION: INTERNAL, Logical Clock Time: [341, 275, 338]
+2023-03-01:21:47:01,088, ACTION: INTERNAL, Logical Clock Time: [342, 275, 338]
+2023-03-01:21:47:01,261, ACTION: RECEIVE, Logical Clock Time: [343, 275, 342], # of remaining messages: 0
+2023-03-01:21:47:01,432, ACTION: INTERNAL, Logical Clock Time: [344, 275, 342]
+2023-03-01:21:47:01,603, ACTION: INTERNAL, Logical Clock Time: [345, 275, 342]
+2023-03-01:21:47:01,775, ACTION: INTERNAL, Logical Clock Time: [346, 275, 342]
+2023-03-01:21:47:01,944, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [346, 275, 342]
+2023-03-01:21:47:01,945, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [347, 275, 342]
+2023-03-01:21:47:02,113, ACTION: INTERNAL, Logical Clock Time: [348, 275, 342]
+2023-03-01:21:47:02,281, ACTION: INTERNAL, Logical Clock Time: [349, 275, 342]
+2023-03-01:21:47:02,451, ACTION: INTERNAL, Logical Clock Time: [350, 275, 342]
+2023-03-01:21:47:02,622, ACTION: RECEIVE, Logical Clock Time: [351, 275, 350], # of remaining messages: 0
+2023-03-01:21:47:02,791, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [352, 275, 350]
+2023-03-01:21:47:02,961, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [353, 275, 350]
+2023-03-01:21:47:03,130, ACTION: INTERNAL, Logical Clock Time: [354, 275, 350]
+2023-03-01:21:47:03,302, ACTION: INTERNAL, Logical Clock Time: [355, 275, 350]
+2023-03-01:21:47:03,471, ACTION: INTERNAL, Logical Clock Time: [356, 275, 350]
+2023-03-01:21:47:03,639, ACTION: RECEIVE, Logical Clock Time: [357, 297, 350], # of remaining messages: 0
+2023-03-01:21:47:03,809, ACTION: INTERNAL, Logical Clock Time: [358, 297, 350]
+2023-03-01:21:47:03,980, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [358, 297, 350]
+2023-03-01:21:47:03,980, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [359, 297, 350]
+2023-03-01:21:47:04,149, ACTION: INTERNAL, Logical Clock Time: [360, 297, 350]
+2023-03-01:21:47:04,321, ACTION: INTERNAL, Logical Clock Time: [361, 297, 350]
+2023-03-01:21:47:04,493, ACTION: INTERNAL, Logical Clock Time: [362, 297, 350]
+2023-03-01:21:47:04,664, ACTION: INTERNAL, Logical Clock Time: [363, 297, 350]
+2023-03-01:21:47:04,836, ACTION: INTERNAL, Logical Clock Time: [364, 297, 350]
+2023-03-01:21:47:05,008, ACTION: INTERNAL, Logical Clock Time: [365, 297, 350]
+2023-03-01:21:47:05,176, ACTION: RECEIVE, Logical Clock Time: [366, 304, 361], # of remaining messages: 0
+2023-03-01:21:47:05,345, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [366, 304, 361]
+2023-03-01:21:47:05,345, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [367, 304, 361]
+2023-03-01:21:47:05,516, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [368, 304, 361]
+2023-03-01:21:47:05,688, ACTION: INTERNAL, Logical Clock Time: [369, 304, 361]
+2023-03-01:21:47:05,856, ACTION: INTERNAL, Logical Clock Time: [370, 304, 361]
+2023-03-01:21:47:06,029, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [371, 304, 361]
+2023-03-01:21:47:06,199, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [372, 304, 361]
+2023-03-01:21:47:06,371, ACTION: INTERNAL, Logical Clock Time: [373, 304, 361]
+2023-03-01:21:47:06,539, ACTION: INTERNAL, Logical Clock Time: [374, 304, 361]
+2023-03-01:21:47:06,709, ACTION: INTERNAL, Logical Clock Time: [375, 304, 361]
+2023-03-01:21:47:06,882, ACTION: RECEIVE, Logical Clock Time: [376, 313, 368], # of remaining messages: 0
+2023-03-01:21:47:07,050, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [377, 313, 368]
+2023-03-01:21:47:07,221, ACTION: INTERNAL, Logical Clock Time: [378, 313, 368]
+2023-03-01:21:47:07,389, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [379, 313, 368]
+2023-03-01:21:47:07,559, ACTION: INTERNAL, Logical Clock Time: [380, 313, 368]
+2023-03-01:21:47:07,727, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [381, 313, 368]
+2023-03-01:21:47:07,900, ACTION: INTERNAL, Logical Clock Time: [382, 313, 368]
+2023-03-01:21:47:08,071, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [383, 313, 368]
+2023-03-01:21:47:08,239, ACTION: INTERNAL, Logical Clock Time: [384, 313, 368]
+2023-03-01:21:47:08,408, ACTION: INTERNAL, Logical Clock Time: [385, 313, 368]
+2023-03-01:21:47:08,585, ACTION: RECEIVE, Logical Clock Time: [386, 321, 380], # of remaining messages: 0
+2023-03-01:21:47:08,754, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [387, 321, 380]
+2023-03-01:21:47:08,922, ACTION: INTERNAL, Logical Clock Time: [388, 321, 380]
+2023-03-01:21:47:09,089, ACTION: INTERNAL, Logical Clock Time: [389, 321, 380]
+2023-03-01:21:47:09,258, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [389, 321, 380]
+2023-03-01:21:47:09,258, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [390, 321, 380]
+2023-03-01:21:47:09,427, ACTION: INTERNAL, Logical Clock Time: [391, 321, 380]
+2023-03-01:21:47:09,596, ACTION: RECEIVE, Logical Clock Time: [392, 326, 388], # of remaining messages: 1
+2023-03-01:21:47:09,764, ACTION: RECEIVE, Logical Clock Time: [393, 326, 391], # of remaining messages: 2
+2023-03-01:21:47:09,935, ACTION: RECEIVE, Logical Clock Time: [394, 327, 391], # of remaining messages: 1
+2023-03-01:21:47:10,106, ACTION: RECEIVE, Logical Clock Time: [395, 327, 392], # of remaining messages: 0
+2023-03-01:21:47:10,277, ACTION: INTERNAL, Logical Clock Time: [396, 327, 392]
+2023-03-01:21:47:10,445, ACTION: RECEIVE, Logical Clock Time: [397, 327, 396], # of remaining messages: 0
+2023-03-01:21:47:10,612, ACTION: RECEIVE, Logical Clock Time: [398, 327, 397], # of remaining messages: 0
+2023-03-01:21:47:10,780, ACTION: INTERNAL, Logical Clock Time: [399, 327, 397]
+2023-03-01:21:47:10,952, ACTION: INTERNAL, Logical Clock Time: [400, 327, 397]
+2023-03-01:21:47:11,120, ACTION: INTERNAL, Logical Clock Time: [401, 327, 397]
+2023-03-01:21:47:11,288, ACTION: SEND, Recipient Machine: 3, Logical Clock Time: [402, 327, 397]
+2023-03-01:21:47:11,456, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [403, 327, 397]
+2023-03-01:21:47:11,624, ACTION: INTERNAL, Logical Clock Time: [404, 327, 397]
