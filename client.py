@@ -80,6 +80,8 @@ class ClientSocket:
             level=logging.INFO)
 
         self.log = logging.getLogger(__name__)
+
+        self.log.info("This Machine carries out " + str(self.time_breakdown) + " operations per second.")
         
         print('Your unique username is '  + data)
 
@@ -235,11 +237,9 @@ class ClientSocket:
             # get the first available message that has been sent to this machine
             received_msg = self.receive_messages(host, port)
 
-            print("HI IM HERE", received_msg)
             if received_msg[:21] != 'No messages available':
                 # deliver the first available message if there is one
                 received_logical_clock, num_remaining_messages = self.deliver_first_msg(received_msg)
-                print("HI IM HERE 2", received_logical_clock, num_remaining_messages)
 
                 # update the local logical clock for this machine
                 self.update_local_logical_clock(received_logical_clock)
