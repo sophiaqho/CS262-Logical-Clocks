@@ -1,3 +1,0 @@
-2023-03-01:20:59:10,342, ACTION: SEND, Recipient Machine: 2, Logical Clock Time: [0, 0, 0]
-2023-03-01:20:59:10,343, ACTION: RECEIVE, Logical Clock Time: [0, 0, 0], # of remaining messages: 2
-2023-03-01:20:59:10,343, ACTION: INTERNAL, Logical Clock Time: [0, 0, 0]
