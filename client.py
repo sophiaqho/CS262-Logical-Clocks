@@ -85,7 +85,7 @@ class ClientSocket:
             level=logging.INFO)
 
         # update the np logname as well
-        self.nplogname = "MessageLog" + self.username + "_" + str(datetime.now()) + ".txt"
+        self.nplogname = "MessageLog_" + self.username + ".txt"
 
         self.log = logging.getLogger(__name__)
 
