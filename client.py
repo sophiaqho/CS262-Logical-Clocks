@@ -5,6 +5,7 @@ import time
 from datetime import datetime
 import random
 import logging
+import numpy as np
 
 set_port = 8888
 set_host = ''
@@ -22,11 +23,15 @@ class ClientSocket:
         self.logical_clock_time = [0] * 3
         self.other_machines = ['1', '2', '3']
         self.logname = "Process"
+        self.nplogname = "MessageLog"
         self.log = None
 
         self.time_breakdown = random.randint(1, 6)
         print("This machine carries out", str(self.time_breakdown), "operations per second.")
-        
+
+        # initialize the message queue history first with the time breakdown so we can 
+        # then standardize the rest of the array
+        self.message_queue_history = [self.time_breakdown]
         if client is None:
             self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         else:
@@ -78,6 +83,9 @@ class ClientSocket:
             format='%(asctime)s,%(msecs)03d, %(message)s',
             datefmt='%Y-%m-%d:%H:%M:%S',
             level=logging.INFO)
+
+        # update the np logname as well
+        self.nplogname = "MessageLog" + self.username + "_" + str(datetime.now()) + ".txt"
 
         self.log = logging.getLogger(__name__)
 
@@ -247,10 +255,22 @@ class ClientSocket:
                 # log the deliver message event in the log file
                 self.log_event('RECEIVE', num_remaining_messages=num_remaining_messages)
 
+                # append this to the message queue history array
+                self.message_queue_history.append(int(num_remaining_messages))
+
+                # save this as a numpy file with the same name as 
+                np.savetxt(self.nplogname, self.message_queue_history)
+
             else:
                 # randomly generate a number between 1 and 10 to be our machine's action
                 # to run trials on internal probabilty of events- update this action
                 action = random.randint(1, 10)
+
+                # append that there are 0 messages in the message queue history array
+                self.message_queue_history.append(0)
+
+                # save this as a numpy file with the same name as 
+                np.savetxt(self.nplogname, self.message_queue_history)
 
                 # if the action is 1 or 2, send the logical clock message to one of the other machines
                 if action == 1 or action == 2:
