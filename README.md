@@ -7,6 +7,6 @@ space and run 'python3 client.py' in EACH of these additional terminals (4 total
 will be saved to the same folder with "Process1_....", "Process2_...." and "Process3_...." with the 
 timestamp. 
 
-To test the client code,  run 'python3 server.py test' and then run 'python3 test_client.py'
+To test the client code,  run 'python3 server.py test' and then run 'python3 test_client.py' in another terminal
 To test the server code, run 'python3 test_server.py'.
 
